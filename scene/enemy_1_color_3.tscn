@@ -34,6 +34,7 @@ animations = [{
 radius = 500.0
 
 [node name="Enemy_1_color_3" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_s87pu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -56,10 +57,13 @@ debug_path_custom_color = Color(1, 0, 0, 1)
 shape = SubResource("CircleShape2D_l7b8f")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="weapon_1_color_3" parent="." instance=ExtResource("6_l7b8f")]
 position = Vector2(23, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_enemy_detact_body_exited_ship_exited"]

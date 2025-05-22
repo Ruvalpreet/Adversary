@@ -9,22 +9,23 @@ var mouse_position: Vector2;
 var is_selected: bool;
 
 func _ready() -> void:
-	mouse_position = get_global_mouse_position();
-	create_unit(Constants.ENEMY,100,10,50);
+	mouse_position = Vector2(randi_range(0,500), randi_range(0,500));
+	create_unit(Constants.ENEMY,100,10,5000, 10000);
 	
 func _physics_process(delta: float) -> void:
-	movement();
+	movement(delta);
 	if(velocity.is_zero_approx()):
 		idle(unit_animation)
 
 
 func _on_timer_timeout() -> void:
-	mouse_position = get_global_mouse_position();
+	mouse_position = Vector2(randi_range(0,500), randi_range(0,500));
 	destination_pathfinding(mouse_position, navigation_agent);
 
 func _on_enemy_detact_body_entered_ship_enterd(body: Node2D) -> void:
 	if(body.is_in_group(Constants.PLAYER)):
-		enemy_in_area(weapon_animation, body)
+		pass
+		#enemy_in_area(weapon_animation,preload("res://scene/player_projectile_single.tscn"),$RayCast2D )
 	pass
 
 func _on_enemy_detact_body_exited_ship_exited(body: Node2D) -> void:
