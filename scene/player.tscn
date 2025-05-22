@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://du8thrm6tprtu"]
+
+[ext_resource type="Script" uid="uid://3182yer47iu3" path="res://script/player.gd" id="1_5s1h1"]
+[ext_resource type="Texture2D" uid="uid://wsotplmoh4c3" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame1.png" id="3_oh5ij"]
+[ext_resource type="Texture2D" uid="uid://cy0ebcecjxntj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame2.png" id="4_hp4bs"]
+[ext_resource type="Texture2D" uid="uid://b8mpujk30yxoj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame3.png" id="5_g2vtq"]
+[ext_resource type="Texture2D" uid="uid://dewoibbi8daqo" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame4.png" id="6_2fvbb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5s1h1"]
+size = Vector2(10, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jb630"]
+radius = 500.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ml7e8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_oh5ij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hp4bs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g2vtq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2fvbb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_5s1h1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5s1h1")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Enemy_detact" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_detact"]
+shape = SubResource("CircleShape2D_jb630")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 4.71239
+sprite_frames = SubResource("SpriteFrames_ml7e8")
+animation = &"idle"
+frame_progress = 0.978996
+
+[connection signal="body_entered" from="Enemy_detact" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
+[connection signal="body_exited" from="Enemy_detact" to="." method="_on_enemy_detact_body_exited_ship_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
