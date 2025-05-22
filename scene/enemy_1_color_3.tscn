@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://5wuubgo24sj6"]
+
+[ext_resource type="Script" uid="uid://bt1lkx156sy73" path="res://script/enemy_1_color_3.gd" id="1_s87pu"]
+[ext_resource type="Texture2D" uid="uid://dbyvgnhvfq7ba" path="res://assets/Boat1_water_animation_color3/Boat1_water_frame1.png" id="2_l7b8f"]
+[ext_resource type="Texture2D" uid="uid://c2t1ga45763ah" path="res://assets/Boat1_water_animation_color3/Boat1_water_frame2.png" id="3_0a621"]
+[ext_resource type="Texture2D" uid="uid://cyxaikyv2rp1t" path="res://assets/Boat1_water_animation_color3/Boat1_water_frame3.png" id="4_joyyk"]
+[ext_resource type="Texture2D" uid="uid://nwvlui2qohql" path="res://assets/Boat1_water_animation_color3/Boat1_water_frame4.png" id="5_5q0wy"]
+[ext_resource type="PackedScene" uid="uid://bmw1oimacwgtn" path="res://scene/weapon_1_color_3.tscn" id="6_l7b8f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yv85"]
+size = Vector2(101, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tf4ye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l7b8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0a621")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_joyyk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5q0wy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7b8f"]
+radius = 500.0
+
+[node name="Enemy_1_color_3" type="CharacterBody2D"]
+script = ExtResource("1_s87pu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 0.5)
+shape = SubResource("RectangleShape2D_0yv85")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 4.71239
+sprite_frames = SubResource("SpriteFrames_tf4ye")
+animation = &"idle"
+frame_progress = 0.82092
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_l7b8f")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="weapon_1_color_3" parent="." instance=ExtResource("6_l7b8f")]
+position = Vector2(23, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_enemy_detact_body_exited_ship_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

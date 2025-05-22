@@ -1,8 +1,22 @@
-class_name GlobalConstant extends Node
+class_name Constants extends Node
 
-enum UNITTYPE {
-	ENEMY,
-	PLAYER,
-	ENEMY_BUILDING,
-	PLAYER_BUILDING
-}
+
+const ENEMY = "ENEMY"
+const PLAYER = "PLAYER"
+const ENEMY_BUILDING = "ENEMY_BUILDING"
+const PLAYER_BUILDING = "PLAYER_BUILDING"
+
+const ANIMATION_IDLE = 'idle';
+const ANIMATION_SHOOT = 'shoot';
+#enum UNITTYPE {
+	#ENEMY,
+	#PLAYER,
+	#ENEMY_BUILDING,
+	#PLAYER_BUILDING
+#}
+#const  UNITTYPEGROUP = {
+	#ENEMY = "ENEMY",
+	#PLAYER = "PLAYER",
+	#ENEMY_BUILDING = "ENEMY_BUILDING",
+	#PLAYER_BUILDING = "PLAYER_BUILDING",
+#}

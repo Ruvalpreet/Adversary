@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dupiq34fn8h0m"]
+
+[ext_resource type="Texture2D" uid="uid://sejj4ata0dj5" path="res://assets/Cannon1_color1/Cannon1_color1_3.png" id="1_waxwy"]
+[ext_resource type="Texture2D" uid="uid://cdhmcssg17n6c" path="res://assets/Cannon1_color1/Cannon1_color1_1.png" id="2_pc02i"]
+[ext_resource type="Texture2D" uid="uid://c1v0n0bylawbx" path="res://assets/Cannon1_color1/Cannon1_color1_2.png" id="3_5yft6"]
+[ext_resource type="Texture2D" uid="uid://ban3kav3hqcvh" path="res://assets/Cannon1_color1/Cannon1_color1_4.png" id="4_mto5y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6dmtn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pc02i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5yft6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_waxwy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mto5y")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[node name="Weapon_1_color_1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 4.71239
+texture = ExtResource("1_waxwy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 4.71239
+sprite_frames = SubResource("SpriteFrames_6dmtn")
+animation = &"shoot"
