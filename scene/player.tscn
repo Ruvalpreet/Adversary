@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dupiq34fn8h0m" path="res://scene/weapon_1_color_1.tscn" id="6_oh5ij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s1h1"]
-size = Vector2(10, 10)
+size = Vector2(89, 42)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jb630"]
 radius = 500.0
@@ -34,6 +34,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 6
 script = ExtResource("1_5s1h1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -42,8 +43,9 @@ debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_5s1h1")
+debug_color = Color(0.970088, 0, 0.457056, 0.42)
 
 [node name="Enemy_detact" type="Area2D" parent="."]
 collision_mask = 2
@@ -72,7 +74,7 @@ modulate = Color(0, 0, 0, 1)
 rotation = 4.71239
 enabled = false
 target_position = Vector2(0, 500)
-collision_mask = 2
+collision_mask = 6
 
 [connection signal="body_entered" from="Enemy_detact" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
 [connection signal="body_exited" from="Enemy_detact" to="." method="_on_enemy_detact_body_exited_ship_exited"]

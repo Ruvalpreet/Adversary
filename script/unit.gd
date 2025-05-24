@@ -75,8 +75,10 @@ func check_for_enemy_priority() -> bool:
 func raycast_enemy(raycasting:RayCast2D) -> bool:
 	raycasting.set_enabled(true);
 	if(raycasting.is_colliding()):
-		raycasting.get_collider().is_in_group(Constants.ENEMY);
-		return true;
+		print("raycast collider", raycasting.get_collider())
+		if(raycasting.get_collider().is_in_group(Constants.ENEMY)):
+			return true;
+		return false
 	return false
 
 
@@ -85,14 +87,12 @@ func shoot_single_round() -> bool:
 		reload_ammo()
 		return false
 	var bullet: Area2D = projectiles_array[0];
-	print("bullet count", bullet)
 	bullet.transform.origin = global_position;
 	bullet.look_at(active_target.global_position)
 	var direction = global_transform.x.normalized();
 	bullet.set_direction(direction);
 	get_tree().current_scene.add_child(bullet)
 	projectiles_array.remove_at(0)
-	print("how many bullets left", projectiles_array)
 	return true;
 		
 	
