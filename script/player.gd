@@ -15,7 +15,7 @@ var is_selected: bool;
 
 func _ready() -> void:
 	mouse_position = get_global_mouse_position();
-	create_unit(Constants.PLAYER,100,10,5000, 10000, 100, projectile);
+	create_unit(Constants.PLAYER,100,10,5000, 20, projectile, Constants.PLAYER_ADVERSARY);
 	raycasting.set_enabled(false)
 	
 
@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	if(velocity.is_zero_approx()):
 		idle(unit_animation)
 	if(!enemies_in_range.is_empty()):
-		enemy_in_area(weapon_animation, projectile, raycasting,raycast_controller, delta)
+		enemy_in_area(weapon_animation, raycasting,raycast_controller, delta)
 	movement(delta);
 
 

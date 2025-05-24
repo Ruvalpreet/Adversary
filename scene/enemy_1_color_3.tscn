@@ -38,6 +38,10 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_s87pu")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3.5, 0.5)
 shape = SubResource("RectangleShape2D_0yv85")
@@ -47,10 +51,6 @@ rotation = 4.71239
 sprite_frames = SubResource("SpriteFrames_tf4ye")
 animation = &"idle"
 frame_progress = 0.82092
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
-debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -64,7 +64,14 @@ autostart = true
 [node name="weapon_1_color_3" parent="." instance=ExtResource("6_l7b8f")]
 position = Vector2(23, 0)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+rotation = 4.71239
+
+[node name="RayCast2D" type="RayCast2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+rotation = 4.71239
+target_position = Vector2(0, 500)
+collision_mask = 5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_enemy_detact_body_exited_ship_exited"]
