@@ -4,13 +4,14 @@ extends Unit
 @onready var unit_animation: AnimatedSprite2D = $AnimatedSprite2D;
 @onready var weapon_animation: Node2D = $weapon_1_color_3;
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D;
+var projectile: PackedScene = preload("res://scene/player_projectile_single.tscn")
 var mouse_position: Vector2;
 
 var is_selected: bool;
 
 func _ready() -> void:
 	mouse_position = Vector2(randi_range(0,500), randi_range(0,500));
-	create_unit(Constants.ENEMY,100,10,5000, 10000);
+	create_unit(Constants.ENEMY,100,10,5000, 10000, 100, projectile);
 	
 func _physics_process(delta: float) -> void:
 	movement(delta);

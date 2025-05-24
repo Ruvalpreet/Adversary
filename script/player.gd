@@ -12,7 +12,7 @@ var is_selected: bool;
 
 func _ready() -> void:
 	mouse_position = get_global_mouse_position();
-	create_unit(Constants.PLAYER,100,10,5000, 10000);
+	create_unit(Constants.PLAYER,100,10,5000, 10000, 20, projectile);
 	raycasting.set_enabled(true)
 	
 
