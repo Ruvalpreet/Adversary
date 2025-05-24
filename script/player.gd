@@ -4,7 +4,10 @@ extends Unit
 @onready var unit_animation: AnimatedSprite2D = $AnimatedSprite2D;
 @onready var weapon_animation: Node2D = $Weapon_1_color_1;
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D;
-@onready var raycasting: RayCast2D = $RayCast2D;
+@onready var raycasting: RayCast2D = $RayCastController/RayCast2D;
+@onready var raycast_controller: Node2D = $RayCastController;
+
+
 var projectile: PackedScene = preload("res://scene/player_projectile_single.tscn")
 var mouse_position: Vector2;
 
@@ -12,15 +15,15 @@ var is_selected: bool;
 
 func _ready() -> void:
 	mouse_position = get_global_mouse_position();
-	create_unit(Constants.PLAYER,100,10,5000, 10000, 20, projectile);
-	raycasting.set_enabled(true)
+	create_unit(Constants.PLAYER,100,10,5000, 10000, 100, projectile);
+	raycasting.set_enabled(false)
 	
 
 func _physics_process(delta: float) -> void:
 	if(velocity.is_zero_approx()):
 		idle(unit_animation)
 	if(!enemies_in_range.is_empty()):
-		enemy_in_area(weapon_animation, projectile, raycasting, delta)
+		enemy_in_area(weapon_animation, projectile, raycasting,raycast_controller, delta)
 	movement(delta);
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btwmu75p73us7"]
+[gd_scene load_steps=5 format=3 uid="uid://btwmu75p73us7"]
 
 [ext_resource type="PackedScene" uid="uid://w8u8yw1fvyim" path="res://scene/map.tscn" id="1_v0l8b"]
 [ext_resource type="PackedScene" uid="uid://du8thrm6tprtu" path="res://scene/player.tscn" id="2_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://5wuubgo24sj6" path="res://scene/enemy_1_color_3.tscn" id="3_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://cya2sdno71l27" path="res://scene/fps_counter.tscn" id="4_brvut"]
 
 [node name="Main" type="Node2D"]
 
@@ -12,3 +13,7 @@
 position = Vector2(323, 475)
 
 [node name="Enemy_1_color_3" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(54, 1)
+
+[node name="FPS_Counter" parent="." instance=ExtResource("4_brvut")]
+position = Vector2(81, 135)

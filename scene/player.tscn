@@ -52,6 +52,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_jb630")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -63,11 +64,15 @@ frame_progress = 0.978996
 [node name="Weapon_1_color_1" parent="." instance=ExtResource("6_oh5ij")]
 position = Vector2(21, -1)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCastController" type="Node2D" parent="."]
+rotation = 4.71239
+
+[node name="RayCast2D" type="RayCast2D" parent="RayCastController"]
 modulate = Color(0, 0, 0, 1)
 rotation = 4.71239
+enabled = false
 target_position = Vector2(0, 500)
-collision_mask = 3
+collision_mask = 2
 
 [connection signal="body_entered" from="Enemy_detact" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
 [connection signal="body_exited" from="Enemy_detact" to="." method="_on_enemy_detact_body_exited_ship_exited"]

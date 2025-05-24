@@ -7,7 +7,7 @@ var movement_speed: int;
 var new_velocity: Vector2;
 var moving: bool = true;
 var projectile_velocity:int;
-var shoot_interval_in_sec: float = 1;
+var shoot_interval_in_sec: float = 0.5;
 var projectiles_array: Array[Area2D];
 
 var current_interval:float;
@@ -49,11 +49,16 @@ func idle(idleAnimation:AnimatedSprite2D) -> void:
 	idleAnimation.play(Constants.ANIMATION_IDLE);
 	
 
-func enemy_in_area(weapon_animation: Node, projetile: PackedScene, raycasting: RayCast2D, delta:float):
+func enemy_in_area(weapon_animation: Node, projetile: PackedScene, raycasting: RayCast2D, raycast_controller: Node2D, delta:float):
 	if(check_for_enemy_priority() && active_target):
+		raycast_controller.look_at(active_target.global_position);
 		if(raycast_enemy(raycasting)):
-			stop_moving_to_shoot(weapon_animation, projetile, delta)
-	return
+			stop_moving_to_shoot(weapon_animation, projetile, delta);
+		else :
+			moving = true;
+	else :
+		raycasting.set_enabled(false)
+	
 	
 
 func check_for_enemy_priority() -> bool:
@@ -99,7 +104,7 @@ func stop_moving_to_shoot(weapon_animation: Node2D, projectile: PackedScene, del
 	moving = false;
 	new_velocity = Vector2(0,0);
 	self.look_at(active_target.global_position);
-	if(current_interval >= shoot_interval_in_sec):
+	if(current_interval >= shoot_interval_in_sec && !projectiles_array.is_empty()):
 		current_interval = 0.0
 		weapon_animation.get_node("AnimatedSprite2D").play(Constants.ANIMATION_SHOOT);
 		shoot_single_round()

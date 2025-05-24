@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	mouse_position = Vector2(randi_range(0,500), randi_range(0,500));
+	mouse_position = Vector2(randi_range(-500,500), randi_range(-500,500));
 	destination_pathfinding(mouse_position, navigation_agent);
 
 func _on_enemy_detact_body_entered_ship_enterd(body: Node2D) -> void:
