@@ -6,7 +6,7 @@ var damage: int;
 var movement_speed: int;
 var new_velocity: Vector2;
 var moving: bool = true;
-var shoot_interval_in_sec: float = 0.5;
+var shoot_interval_in_sec: float = 1;
 var projectiles_array: Array[Area2D];
 var adversary: Array[String];
  
@@ -84,7 +84,7 @@ func raycast_enemy(raycasting:RayCast2D) -> bool:
 				return true;
 				print("just in case if shit happend")
 		active_target = null;
-		print("this is if enemy is not getting targated")
+		#print("this is if enemy is not getting targated")
 		return false
 	return false
 
@@ -107,7 +107,8 @@ func shoot_single_round() -> bool:
 	bullet.transform.origin = global_position;
 	bullet.look_at(active_target.global_position)
 	var direction = global_transform.x.normalized();
-	bullet.set_direction(direction);
+	bullet.constructor(2.0,direction,500);
+	#bullet.restart(500,direction)
 	get_tree().current_scene.add_child(bullet)
 	projectiles_array.remove_at(0)
 	return true;

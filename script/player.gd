@@ -40,3 +40,11 @@ func _on_enemy_detact_body_exited_ship_exited(body: Node2D) -> void:
 	if(body.is_in_group(Constants.ENEMY)):
 		enemies_in_range.erase(body)
 	pass # Replace with function body.
+
+
+func _on_enemy_detact_area_exited_projectile_exited(area: Area2D) -> void:
+	print("the body", area)
+
+
+func _on_enemy_detact_area_entered(area: Area2D) -> void:
+	print("the body entered", area)
