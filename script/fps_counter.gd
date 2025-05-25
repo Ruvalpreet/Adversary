@@ -1,6 +1,6 @@
 extends Node2D
 
-const TIMER_LIMIT = 2.0
+const TIMER_LIMIT = 1.0
 var timer = 0.0
 @onready var label: Label = $Label
 

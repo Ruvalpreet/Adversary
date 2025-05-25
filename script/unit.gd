@@ -1,21 +1,26 @@
 class_name Unit extends CharacterBody2D
 
+
 var maxHealth: int;
 var current_health: int;
 var damage: int;
 var movement_speed: int;
 var new_velocity: Vector2;
 var moving: bool = true;
-var shoot_interval_in_sec: float = 1;
+var shoot_interval_in_sec: float = 0.2;
 var projectiles_array: Array[Area2D];
+var projectiles_left: int;
 var adversary: Array[String];
+var enemy_detection_range: float;
  
 var current_interval:float;
 var enemies_in_range: Array[CharacterBody2D];
 var active_target: CharacterBody2D;
+var reload_timer_node: Timer;
+var reloading_speed: float;
 
 #Unit creation function NOTE: NEED TO RUN IN _READY.
-func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: int, number_of_projectiles_before_loading: int, projetile: PackedScene, adversary: Array[String]) -> void:
+func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: int, number_of_projectiles_before_reloading: int, projetile: PackedScene, adversary: Array[String], enemy_detection_range: float, enemy_detecation_collision_node: CollisionShape2D, raycasting: RayCast2D, reload_timer_node: Timer, reloading_speed: float) -> void:
 	if(unit_type == Constants.PLAYER):
 		Global.controllable_character.append(self);
 	add_to_group(unit_type);
@@ -24,9 +29,19 @@ func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: 
 	self.damage = damage;
 	self.movement_speed = movement_speed;
 	self.adversary = adversary;
-	for i in number_of_projectiles_before_loading:
+	self.enemy_detection_range = enemy_detection_range;
+	self.reload_timer_node = reload_timer_node;
+	self.reloading_speed = reloading_speed;
+	
+	
+	enemy_detecation_collision_node.get_shape().radius = enemy_detection_range;
+	raycasting.target_position = Vector2(0.0, enemy_detection_range);
+	self.projectiles_left = number_of_projectiles_before_reloading - 1;
+	for i in number_of_projectiles_before_reloading:
 		var bullet: Area2D = projetile.instantiate();
 		projectiles_array.append(bullet)
+		get_tree().current_scene.add_child.call_deferred(bullet)
+	
 	print("intital data",get_groups(), projectiles_array.size());
 
 #to move the unit NOTE: NEED TO SELECT THE DESTINATION FIRST TO DO THE MOVEMENT
@@ -50,7 +65,7 @@ func idle(idleAnimation:AnimatedSprite2D) -> void:
 	
 
 func enemy_in_area(weapon_animation: Node, raycasting: RayCast2D, raycast_controller: Node2D, delta:float):
-	if(active_target && !projectiles_array.is_empty()):
+	if(active_target && projectiles_left != 0):
 		raycast_controller.look_at(active_target.global_position);
 		if(raycast_enemy(raycasting)):
 			stop_moving_to_shoot(weapon_animation, delta);
@@ -76,52 +91,42 @@ func check_for_enemy_priority() -> bool:
 		return true
 	return false
 
+
 func raycast_enemy(raycasting:RayCast2D) -> bool:
 	raycasting.set_enabled(true);
 	if(raycasting.is_colliding()):
-		for i in adversary:
-			if(raycasting.get_collider().is_in_group(i)):
-				return true;
-				print("just in case if shit happend")
+		if(raycasting.get_collider() == active_target):
+			return true;
+			print("just in case if shit happend")
 		active_target = null;
-		#print("this is if enemy is not getting targated")
 		return false
 	return false
 
 
 func stop_moving_to_shoot(weapon_animation: Node2D, delta: float):
 	moving = false;
-	new_velocity = Vector2(0,0);
+	new_velocity = Vector2.ZERO;
 	self.look_at(active_target.global_position);
-	if(current_interval >= shoot_interval_in_sec && !projectiles_array.is_empty()):
+	if(current_interval >= shoot_interval_in_sec && projectiles_left != 0):
 		current_interval = 0.0
 		weapon_animation.get_node("AnimatedSprite2D").play(Constants.ANIMATION_SHOOT);
 		shoot_single_round()
 	
 	else:
-		#weapon_animation.get_node("AnimatedSprite2D").stop();
 		current_interval += delta
 
 func shoot_single_round() -> bool:
-	var bullet: Area2D = projectiles_array[0];
+	var bullet: Area2D = projectiles_array[projectiles_left];
 	bullet.transform.origin = global_position;
 	bullet.look_at(active_target.global_position)
 	var direction = global_transform.x.normalized();
-	bullet.constructor(2.0,direction,500);
-	#bullet.restart(500,direction)
-	get_tree().current_scene.add_child(bullet)
-	projectiles_array.remove_at(0)
+	bullet.constructor(direction,enemy_detection_range);
+	projectiles_left -= 1;
+	if(projectiles_left == 0):
+		reload_timer_node.set_wait_time(reloading_speed)
+		reload_timer_node.start();
 	return true;
 		
 	
 func reload_ammo():
-	moving = true;
-	pass
-
-
-
-func look_at_node_and_check_collision(node:Node2D, raycast: RayCast2D):
-	look_at(node.global_position);
-	if(raycast.is_colliding()):
-		print("colliding");
-	
+	projectiles_left = projectiles_array.size() - 1;

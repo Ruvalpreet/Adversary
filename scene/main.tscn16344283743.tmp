@@ -1,0 +1,320 @@
+[gd_scene load_steps=6 format=3 uid="uid://btwmu75p73us7"]
+
+[ext_resource type="PackedScene" uid="uid://w8u8yw1fvyim" path="res://scene/map.tscn" id="1_v0l8b"]
+[ext_resource type="PackedScene" uid="uid://du8thrm6tprtu" path="res://scene/player.tscn" id="2_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://5wuubgo24sj6" path="res://scene/enemy_1_color_3.tscn" id="3_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://cya2sdno71l27" path="res://scene/fps_counter.tscn" id="4_brvut"]
+[ext_resource type="PackedScene" uid="uid://2pj6w85pevgu" path="res://scene/obstacle.tscn" id="5_0ha60"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource("1_v0l8b")]
+
+[node name="Player" parent="." instance=ExtResource("2_wp4xf")]
+position = Vector2(323, 475)
+
+[node name="Enemy_1_color_3" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(54, 1)
+
+[node name="Enemy_1_color_4" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_5" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_6" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_7" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_8" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_9" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_10" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_11" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_12" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_13" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_14" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_15" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_16" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_17" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_18" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_19" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_20" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_21" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_22" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_23" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_24" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_25" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_26" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_27" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_28" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_29" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_30" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_31" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_32" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_33" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_34" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_35" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_36" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_37" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_38" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_39" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_40" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_41" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_42" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_43" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_44" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_45" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_46" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_47" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_48" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_49" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_50" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_51" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_52" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_53" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_54" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_55" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_56" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_57" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_58" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_59" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_60" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_61" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_62" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_63" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_64" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_65" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_66" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_67" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_68" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_69" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_70" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_71" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_72" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_73" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_74" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_75" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_76" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_77" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_78" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_79" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_80" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_81" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_82" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_83" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_84" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_85" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_86" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_87" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_88" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_89" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_90" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_91" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_92" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_93" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_94" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_95" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_96" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_97" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_98" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_99" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="Enemy_1_color_100" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(1304, 89)
+
+[node name="FPS_Counter" parent="." instance=ExtResource("4_brvut")]
+position = Vector2(81, 135)
+
+[node name="Obstacle" parent="." instance=ExtResource("5_0ha60")]
+position = Vector2(269, 333)
+
+[node name="Obstacle2" parent="." instance=ExtResource("5_0ha60")]
+position = Vector2(392, 331)
+
+[node name="Obstacle3" parent="." instance=ExtResource("5_0ha60")]
+position = Vector2(517, 331)

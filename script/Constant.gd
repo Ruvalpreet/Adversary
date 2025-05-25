@@ -11,7 +11,7 @@ const ENEMY_ADVERSARY: Array[String]= [PLAYER, PLAYER_BUILDING];
 const ANIMATION_IDLE = 'idle';
 const ANIMATION_SHOOT = 'shoot';
 
-const PROJECTILE_VELOCITY:int = 400;
+const PROJECTILE_VELOCITY:int = 500;
 #enum UNITTYPE {
 	#ENEMY,
 	#PLAYER,
