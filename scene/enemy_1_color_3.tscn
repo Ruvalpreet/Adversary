@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5wuubgo24sj6"]
+[gd_scene load_steps=12 format=3 uid="uid://5wuubgo24sj6"]
 
 [ext_resource type="Script" uid="uid://bt1lkx156sy73" path="res://script/enemy_1_color_3.gd" id="1_s87pu"]
 [ext_resource type="Texture2D" uid="uid://dbyvgnhvfq7ba" path="res://assets/Boat1_water_animation_color3/Boat1_water_frame1.png" id="2_l7b8f"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cyxaikyv2rp1t" path="res://assets/Boat1_water_animation_color3/Boat1_water_frame3.png" id="4_joyyk"]
 [ext_resource type="Texture2D" uid="uid://nwvlui2qohql" path="res://assets/Boat1_water_animation_color3/Boat1_water_frame4.png" id="5_5q0wy"]
 [ext_resource type="PackedScene" uid="uid://bmw1oimacwgtn" path="res://scene/weapon_1_color_3.tscn" id="6_l7b8f"]
+[ext_resource type="Texture2D" uid="uid://1t88x0bvurpb" path="res://assets/Broken_asset_water/Broken_asset_water2.png" id="7_0a621"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yv85"]
 size = Vector2(101, 43)
@@ -33,6 +34,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_l7b8f"]
 radius = 500.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7b8f"]
+size = Vector2(97, 38)
+
 [node name="Enemy_1_color_3" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 21
@@ -58,7 +62,7 @@ collision_mask = 21
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_l7b8f")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="PathFinder_timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
@@ -77,7 +81,19 @@ collision_mask = 5
 [node name="Reload_Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Projectile_Collider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile_Collider"]
+shape = SubResource("RectangleShape2D_l7b8f")
+
+[node name="dead_sprite" type="Sprite2D" parent="."]
+rotation = 4.71239
+texture = ExtResource("7_0a621")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_enemy_detact_body_exited_ship_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PathFinder_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Reload_Timer" to="." method="_on_reload_timer_timeout"]
+[connection signal="area_entered" from="Projectile_Collider" to="." method="_on_projectile_collider_area_entered"]

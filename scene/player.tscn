@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://du8thrm6tprtu"]
+[gd_scene load_steps=12 format=3 uid="uid://du8thrm6tprtu"]
 
 [ext_resource type="Script" uid="uid://3182yer47iu3" path="res://script/player.gd" id="1_5s1h1"]
 [ext_resource type="Texture2D" uid="uid://wsotplmoh4c3" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame1.png" id="3_oh5ij"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b8mpujk30yxoj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame3.png" id="5_g2vtq"]
 [ext_resource type="Texture2D" uid="uid://dewoibbi8daqo" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame4.png" id="6_2fvbb"]
 [ext_resource type="PackedScene" uid="uid://dupiq34fn8h0m" path="res://scene/weapon_1_color_1.tscn" id="6_oh5ij"]
+[ext_resource type="Texture2D" uid="uid://1t88x0bvurpb" path="res://assets/Broken_asset_water/Broken_asset_water2.png" id="7_hp4bs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s1h1"]
 size = Vector2(89, 42)
@@ -33,6 +34,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oh5ij"]
+size = Vector2(97, 38)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 38
 script = ExtResource("1_5s1h1")
@@ -52,7 +56,7 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_detact"]
 shape = SubResource("CircleShape2D_jb630")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="PathFinding_timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
@@ -78,7 +82,19 @@ collision_mask = 6
 [node name="Reload_Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ProJectile_Collider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProJectile_Collider"]
+shape = SubResource("RectangleShape2D_oh5ij")
+
+[node name="dead_sprite" type="Sprite2D" parent="."]
+rotation = 4.71239
+texture = ExtResource("7_hp4bs")
+
 [connection signal="body_entered" from="Enemy_detact" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
 [connection signal="body_exited" from="Enemy_detact" to="." method="_on_enemy_detact_body_exited_ship_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PathFinding_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Reload_Timer" to="." method="_on_reload_timer_timeout"]
+[connection signal="area_entered" from="ProJectile_Collider" to="." method="_on_pro_jectile_collider_area_entered"]

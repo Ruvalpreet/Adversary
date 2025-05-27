@@ -5,19 +5,19 @@ var direction: Vector2 = Vector2.ZERO
 var speed:int;
 var start_position:Vector2
 var max_distance: float; 
-
-func constructor( direction: Vector2, max_distance: float):
+var damage: int;
+func constructor( direction: Vector2, max_distance: float,damage: int ):
 	self.direction = direction.normalized();
 	self.speed = Constants.PROJECTILE_VELOCITY;
-	self.max_distance = max_distance - 50
+	self.max_distance = max_distance - 25
 	self.start_position = self.global_position;
+	self.damage = damage;
 	if(!self.is_physics_processing()):
 		set_physics_process(true);
 
 func start(delta: float):
 	if(cal_distance_travel(start_position, self.position) >= max_distance):
 		disable_projectile();
-		#queue_free()
 	position += direction * speed * delta
 
 func cal_distance_travel(initial_position: Vector2, current_position: Vector2) -> float:
