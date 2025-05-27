@@ -15,6 +15,7 @@ var enemy_detection_range: float;
 var dead_sprit: Sprite2D;
 var unit_live_animation: AnimatedSprite2D;
 var path_finding_timer: Timer;
+var projectile_spawn_node: Node2D;
 
 var current_interval:float;
 var enemies_in_range: Array[CharacterBody2D];
@@ -23,7 +24,7 @@ var reload_timer_node: Timer;
 var reloading_speed: float;
 
 #Unit creation function NOTE: NEED TO RUN IN _READY.
-func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: int, number_of_projectiles_before_reloading: int, projetile: PackedScene, adversary: Array[String], enemy_detection_range: float, enemy_detecation_collision_node: CollisionShape2D, raycasting: RayCast2D, reload_timer_node: Timer, reloading_speed: float, dead_sprit: Sprite2D, unit_live_animation: AnimatedSprite2D, path_finding_timer) -> void:
+func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: int, number_of_projectiles_before_reloading: int, projetile: PackedScene, adversary: Array[String], enemy_detection_range: float, enemy_detecation_collision_node: CollisionShape2D, raycasting: RayCast2D, reload_timer_node: Timer, reloading_speed: float, dead_sprit: Sprite2D, unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer, projectile_spawn_node:Node2D) -> void:
 	if(unit_type == Constants.PLAYER):
 		Global.controllable_character.append(self);
 	add_to_group(unit_type);
@@ -39,6 +40,7 @@ func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: 
 	self.dead_sprit = dead_sprit;
 	self.unit_live_animation = unit_live_animation;
 	self.path_finding_timer = path_finding_timer;
+	self.projectile_spawn_node = projectile_spawn_node;
 	
 	enemy_detecation_collision_node.get_shape().radius = enemy_detection_range;
 	raycasting.target_position = Vector2(0.0, enemy_detection_range);
@@ -123,10 +125,11 @@ func stop_moving_to_shoot(weapon_animation: Node2D, delta: float):
 
 func shoot_single_round() -> bool:
 	var bullet: Area2D = projectiles_array[projectiles_left];
-	bullet.transform.origin = global_position;
+	bullet.transform.origin = projectile_spawn_node.global_position;
 	bullet.look_at(active_target.global_position);
-	var direction = global_transform.x.normalized();
+	var direction = global_transform.x;
 	direction.x = randf_range(direction.x + Constants.PROJECTILE_ANGLE_ERROR, direction.x - Constants.PROJECTILE_ANGLE_ERROR);
+	direction.y = randf_range(direction.y + Constants.PROJECTILE_ANGLE_ERROR, direction.y - Constants.PROJECTILE_ANGLE_ERROR);
 	bullet.constructor(direction,enemy_detection_range, damage);
 	projectiles_left -= 1;
 	if(projectiles_left == 0):

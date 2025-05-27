@@ -10,6 +10,7 @@ extends Unit
 @onready var reload_timer: Timer = $Reload_Timer;
 @onready var dead_ship_sprite: Sprite2D = $dead_sprite;
 @onready var pathfinder_timer: Timer = $PathFinding_timer;
+@onready var bullet_spawner: Node2D = $Projectile_spawn;
 
 var projectile: PackedScene = preload("res://scene/player_projectile_single.tscn")
 var mouse_position: Vector2;
@@ -18,7 +19,7 @@ var is_selected: bool;
 
 func _ready() -> void:
 	mouse_position = get_global_mouse_position();
-	await create_unit(Constants.PLAYER,200,10,5000, 100, projectile, Constants.PLAYER_ADVERSARY, 500, enemy_detactor_collider, raycasting, reload_timer, 1,dead_ship_sprite,unit_animation, pathfinder_timer);
+	await create_unit(Constants.PLAYER,200,10,5000, 10, projectile, Constants.PLAYER_ADVERSARY, 500, enemy_detactor_collider, raycasting, reload_timer, 1,dead_ship_sprite,unit_animation, pathfinder_timer, bullet_spawner);
 	raycasting.set_enabled(true)
 	
 

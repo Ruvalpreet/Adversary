@@ -93,6 +93,9 @@ shape = SubResource("RectangleShape2D_oh5ij")
 rotation = 4.71239
 texture = ExtResource("7_hp4bs")
 
+[node name="Projectile_spawn" type="Node2D" parent="."]
+position = Vector2(76, 0)
+
 [connection signal="body_entered" from="Enemy_detact" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
 [connection signal="body_exited" from="Enemy_detact" to="." method="_on_enemy_detact_body_exited_ship_exited"]
 [connection signal="timeout" from="PathFinding_timer" to="." method="_on_timer_timeout"]
