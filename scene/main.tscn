@@ -13,12 +13,6 @@
 [node name="Player" parent="." instance=ExtResource("2_wp4xf")]
 position = Vector2(323, 475)
 
-[node name="Enemy_1_color_3" parent="." instance=ExtResource("3_wp4xf")]
-position = Vector2(54, 1)
-
-[node name="Enemy_1_color_4" parent="." instance=ExtResource("3_wp4xf")]
-position = Vector2(1304, 89)
-
 [node name="FPS_Counter" parent="." instance=ExtResource("4_brvut")]
 position = Vector2(81, 135)
 
@@ -30,3 +24,5 @@ position = Vector2(392, 331)
 
 [node name="Obstacle3" parent="." instance=ExtResource("5_0ha60")]
 position = Vector2(517, 331)
+
+[node name="Enemy_1_color_3" parent="." instance=ExtResource("3_wp4xf")]

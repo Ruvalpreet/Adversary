@@ -12,7 +12,7 @@ const ANIMATION_IDLE = 'idle';
 const ANIMATION_SHOOT = 'shoot';
 
 const PROJECTILE_VELOCITY:int = 1000;
-const PROJECTILE_ANGLE_ERROR:float = 0.25;
+const PROJECTILE_ANGLE_ERROR:float = 0.05;
 #enum UNITTYPE {
 	#ENEMY,
 	#PLAYER,

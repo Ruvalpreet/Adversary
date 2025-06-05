@@ -25,4 +25,4 @@ func cal_distance_travel(initial_position: Vector2, current_position: Vector2) -
 
 func disable_projectile():
 	set_physics_process(false);
-	self.position = Vector2(-50,-50)
+	self.global_position = Vector2(-500,-500)

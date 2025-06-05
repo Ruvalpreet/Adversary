@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5wuubgo24sj6"]
+[gd_scene load_steps=11 format=3 uid="uid://5wuubgo24sj6"]
 
 [ext_resource type="Script" uid="uid://bt1lkx156sy73" path="res://script/enemy_1_color_3.gd" id="1_s87pu"]
 [ext_resource type="Texture2D" uid="uid://dbyvgnhvfq7ba" path="res://assets/Boat1_water_animation_color3/Boat1_water_frame1.png" id="2_l7b8f"]
@@ -31,9 +31,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l7b8f"]
-radius = 500.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7b8f"]
 size = Vector2(97, 38)
 
@@ -55,31 +52,12 @@ sprite_frames = SubResource("SpriteFrames_tf4ye")
 animation = &"idle"
 frame_progress = 0.82092
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 21
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_l7b8f")
-
 [node name="PathFinder_timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
 [node name="weapon_1_color_3" parent="." instance=ExtResource("6_l7b8f")]
 position = Vector2(23, 0)
-
-[node name="Node2D" type="Node2D" parent="."]
-rotation = 4.71239
-
-[node name="RayCast2D" type="RayCast2D" parent="Node2D"]
-modulate = Color(0, 0, 0, 1)
-rotation = 4.71239
-target_position = Vector2(0, 500)
-collision_mask = 5
-
-[node name="Reload_Timer" type="Timer" parent="."]
-one_shot = true
 
 [node name="Projectile_Collider" type="Area2D" parent="."]
 collision_layer = 0
@@ -92,11 +70,5 @@ shape = SubResource("RectangleShape2D_l7b8f")
 rotation = 4.71239
 texture = ExtResource("7_0a621")
 
-[node name="Projectile_spawner" type="Node2D" parent="."]
-position = Vector2(76, 0)
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_enemy_detact_body_entered_ship_enterd"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_enemy_detact_body_exited_ship_exited"]
 [connection signal="timeout" from="PathFinder_timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Reload_Timer" to="." method="_on_reload_timer_timeout"]
 [connection signal="area_entered" from="Projectile_Collider" to="." method="_on_projectile_collider_area_entered"]
