@@ -6,10 +6,11 @@ func _ready() -> void:
 	total_number_of_projectiles = 20;
 	reload_timer_node = $Reload;
 	projectile = projectile_player;
-	raycast_enemy = $RayCast2D;
-	projectile_spawn_node = $BulletSpawner;
+	raycast_enemy = $AnimatedSprite2D/RayCast2D;
+	projectile_spawn_node = $AnimatedSprite2D/BulletSpawner;
 	projectile_range = 500;
 	damage = 10;
+	sprite_node = $AnimatedSprite2D
 	constructor();
 	
 

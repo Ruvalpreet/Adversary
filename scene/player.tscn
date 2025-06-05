@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://du8thrm6tprtu"]
+[gd_scene load_steps=10 format=3 uid="uid://du8thrm6tprtu"]
 
 [ext_resource type="Script" uid="uid://3182yer47iu3" path="res://script/player.gd" id="1_5s1h1"]
 [ext_resource type="Texture2D" uid="uid://wsotplmoh4c3" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame1.png" id="3_oh5ij"]
@@ -6,10 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://b8mpujk30yxoj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame3.png" id="5_g2vtq"]
 [ext_resource type="Texture2D" uid="uid://dewoibbi8daqo" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame4.png" id="6_2fvbb"]
 [ext_resource type="PackedScene" uid="uid://dupiq34fn8h0m" path="res://scene/weapon_1_color_1.tscn" id="6_oh5ij"]
-[ext_resource type="Texture2D" uid="uid://1t88x0bvurpb" path="res://assets/Broken_asset_water/Broken_asset_water2.png" id="7_hp4bs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s1h1"]
-size = Vector2(89, 42)
+size = Vector2(96, 41)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ml7e8"]
 animations = [{
@@ -32,10 +31,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oh5ij"]
-size = Vector2(97, 38)
+size = Vector2(96, 41)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 38
 script = ExtResource("1_5s1h1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -44,20 +42,17 @@ debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, 0)
+position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_5s1h1")
 
 [node name="PathFinding_timer" type="Timer" parent="."]
-wait_time = 0.1
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-rotation = 4.71239
+rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_ml7e8")
 animation = &"idle"
 frame_progress = 0.978996
-
-[node name="Weapon_1_color_1" parent="." instance=ExtResource("6_oh5ij")]
 
 [node name="ProJectile_Collider" type="Area2D" parent="."]
 collision_layer = 0
@@ -66,10 +61,7 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProJectile_Collider"]
 shape = SubResource("RectangleShape2D_oh5ij")
 
-[node name="dead_sprite" type="Sprite2D" parent="."]
-visible = false
-rotation = 4.71239
-texture = ExtResource("7_hp4bs")
+[node name="Weapon_1_color_1" parent="." instance=ExtResource("6_oh5ij")]
 
 [connection signal="timeout" from="PathFinding_timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="ProJectile_Collider" to="." method="_on_pro_jectile_collider_area_entered"]

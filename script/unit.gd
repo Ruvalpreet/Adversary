@@ -1,5 +1,6 @@
 class_name Unit extends CharacterBody2D
 
+const TURN_SPEED: float = 2.5;
 
 var maxHealth: int;
 var current_health: int;
@@ -10,12 +11,12 @@ var new_velocity: Vector2;
 var moving: bool = true;
 
 var adversary: Array[String];
-var dead_sprit: Sprite2D;
 var unit_live_animation: AnimatedSprite2D;
 var path_finding_timer: Timer;
 
-#Unit creation function NOTE: NEED TO RUN IN _READY.
-func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: int, adversary: Array[String], dead_sprit: Sprite2D, unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer) -> void:
+var navigation_agent: NavigationAgent2D;
+
+func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: int, adversary: Array[String], unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer) -> void:
 	if(unit_type == Constants.PLAYER):
 		Global.controllable_character.append(self);
 	add_to_group(unit_type);
@@ -24,41 +25,40 @@ func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: 
 	self.damage = damage;
 	self.movement_speed = movement_speed;
 	self.adversary = adversary;
-	dead_sprit.visible = false;
-	self.dead_sprit = dead_sprit;
 	self.unit_live_animation = unit_live_animation;
 	self.path_finding_timer = path_finding_timer;
 	
 	print("intital data",get_groups());
 
+
 func movement(delta: float) -> void:
-	velocity = new_velocity * delta;
-	move_and_slide();
+	if not moving:
+		return
+	if navigation_agent.is_navigation_finished():
+		velocity = Vector2.ZERO
+		return
+
+	var next_position = navigation_agent.get_next_path_position()
+	var desired_angle = (next_position - global_position).angle()
+	rotation = lerp_angle(rotation, desired_angle, TURN_SPEED * delta)
+	var forward_dir = Vector2.RIGHT.rotated(rotation)
+	velocity = forward_dir * movement_speed * delta
+
+	move_and_slide()
 
 
-func destination_pathfinding(destination: Vector2, navigationAgent: NavigationAgent2D) -> void:
-	if(moving):
-		navigationAgent.target_position = destination;
-		var next_path = navigationAgent.get_next_path_position();
-		look_at(next_path);
-		new_velocity = global_position.direction_to(next_path) * self.movement_speed;
+func destination_pathfinding(destination: Vector2) -> void:
+	if moving:
+		navigation_agent.target_position = destination
 
-#Do things when idle
-func idle() -> void:
-	unit_live_animation.stop();
-	unit_live_animation.play(Constants.ANIMATION_IDLE);
-	
-	
-	
+
 func damage_take(damage_collision_node: Area2D):
 	if(is_zero_approx(current_health)):
-		print("character is dead and respan");
 		dead()
-		current_health = maxHealth;
 	if(damage_collision_node.damage):
 		damage_collision_node.disable_projectile();
 		current_health -= damage_collision_node.damage;
 		
 func dead():
-	Global.GET_DEAD_SHIP_SPRITE(self.global_position);
+	Global.GET_DEAD_SHIP_SPRITE(self.global_position, transform.x.angle());
 	queue_free();

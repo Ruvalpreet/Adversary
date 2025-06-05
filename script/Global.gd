@@ -10,10 +10,10 @@ func select_character(character: CharacterBody2D):
 	selected_character = character
 	selected_character.is_selected = true
 
-func GET_DEAD_SHIP_SPRITE(location: Vector2):
+func GET_DEAD_SHIP_SPRITE(location: Vector2, rotation_angle: float):
 	var new_dead_ship: Sprite2D = dead_ship_sprite_1.instantiate();
 	new_dead_ship.visible = true;
+	print("what is the direction ", rad_to_deg(rotation_angle))
 	new_dead_ship.global_position = location;
-	var look_at_direction: Vector2 = Vector2.ZERO
-	new_dead_ship.look_at(look_at_direction);
+	new_dead_ship.set_rotation(rotation_angle - deg_to_rad(90));
 	get_tree().current_scene.add_child(new_dead_ship);
