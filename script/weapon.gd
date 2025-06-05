@@ -54,7 +54,7 @@ func shoot_single_round():
 	var bullet: Area2D = projectiles_array[projectiles_left];
 	bullet.transform.origin = projectile_spawn_node.global_position;
 	
-	bullet.set_global_rotation(rotation);
+	bullet.set_global_rotation(global_rotation);
 	var direction = global_transform.x;
 	direction.x = randf_range(direction.x + Constants.PROJECTILE_ANGLE_ERROR, direction.x - Constants.PROJECTILE_ANGLE_ERROR);
 	direction.y = randf_range(direction.y + Constants.PROJECTILE_ANGLE_ERROR, direction.y - Constants.PROJECTILE_ANGLE_ERROR);
@@ -77,7 +77,7 @@ func enable():
 	
 func look_at_active_target(delta:float):
 	var direction = (active_target.global_position - global_position).angle()
-	rotation = lerp_angle(rotation, direction, TURN_SPEED * delta)
+	global_rotation = lerp_angle(global_rotation, direction, TURN_SPEED * delta)
 	if(current_shooting_interval >= shoot_interval_in_sec):
 		if(enemy_in_sight() && !is_reloading):
 			print("shoot")

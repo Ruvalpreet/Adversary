@@ -15,12 +15,11 @@ func _ready() -> void:
 	navigation_agent =$NavigationAgent2D
 
 func _physics_process(delta: float) -> void:
-	#movement(delta);
-	pass
+	movement(delta);
 
 
 func _on_timer_timeout() -> void:
-	#mouse_position = get_global_mouse_position();
+	mouse_position = get_global_mouse_position();
 	destination_pathfinding(mouse_position);
 
 func _on_pro_jectile_collider_area_entered(area: Area2D) -> void:
