@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://du8thrm6tprtu"]
+[gd_scene load_steps=12 format=3 uid="uid://du8thrm6tprtu"]
 
 [ext_resource type="Script" uid="uid://3182yer47iu3" path="res://script/player.gd" id="1_5s1h1"]
 [ext_resource type="Texture2D" uid="uid://wsotplmoh4c3" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame1.png" id="3_oh5ij"]
@@ -33,12 +33,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oh5ij"]
 size = Vector2(96, 41)
 
+[sub_resource type="Gradient" id="Gradient_oh5ij"]
+offsets = PackedFloat32Array(0, 0.671717, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.040404, 0.040404, 0.040404, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hp4bs"]
+gradient = SubResource("Gradient_oh5ij")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_5s1h1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 50.0
+target_desired_distance = 100.0
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
@@ -47,6 +56,7 @@ position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_5s1h1")
 
 [node name="PathFinding_timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -63,6 +73,13 @@ collision_mask = 32
 shape = SubResource("RectangleShape2D_oh5ij")
 
 [node name="Weapon_1_color_1" parent="." instance=ExtResource("6_oh5ij")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3, 5)
+scale = Vector2(5.70313, 5.09375)
+texture = SubResource("GradientTexture2D_hp4bs")
 
 [connection signal="timeout" from="PathFinding_timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="ProJectile_Collider" to="." method="_on_pro_jectile_collider_area_entered"]

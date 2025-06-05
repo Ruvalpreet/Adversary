@@ -56,7 +56,6 @@ wait_time = 2.0
 autostart = true
 
 [node name="weapon_1_color_3" parent="." instance=ExtResource("6_l7b8f")]
-position = Vector2(23, 0)
 
 [node name="Projectile_Collider" type="Area2D" parent="."]
 collision_layer = 0

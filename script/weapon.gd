@@ -23,10 +23,11 @@ var damage: int;
 var enemies_in_range: Array[CharacterBody2D];
 var active_target: CharacterBody2D;
 
-var sprite_node : AnimatedSprite2D;
+var shoot_sprite_node : AnimatedSprite2D;
 
 func constructor():
 	self.projectiles_left = total_number_of_projectiles - 1;
+	reload_timer_node.set_one_shot(true)
 	disable();
 	for i in total_number_of_projectiles:
 		var bullet: Area2D = projectile.instantiate();
@@ -76,12 +77,13 @@ func enable():
 	set_physics_process(true);
 	
 func look_at_active_target(delta:float):
-	var direction = (active_target.global_position - global_position).angle()
-	global_rotation = lerp_angle(global_rotation, direction, TURN_SPEED * delta)
-	if(current_shooting_interval >= shoot_interval_in_sec):
-		if(enemy_in_sight() && !is_reloading):
-			print("shoot")
-			shoot_single_round();
-			current_shooting_interval = 0.0
-	else :
-		current_shooting_interval += delta
+	if(active_target):
+		var direction = (active_target.global_position - global_position).angle()
+		global_rotation = lerp_angle(global_rotation, direction, TURN_SPEED * delta)
+		if(current_shooting_interval >= shoot_interval_in_sec):
+			if(enemy_in_sight() && !is_reloading):
+				shoot_sprite_node.play(Constants.ANIMATION_SHOOT)
+				shoot_single_round();
+				current_shooting_interval = 0.0
+		else :
+			current_shooting_interval += delta

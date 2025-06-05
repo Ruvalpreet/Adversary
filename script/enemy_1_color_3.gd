@@ -11,7 +11,7 @@ var mouse_position: Vector2;
 
 func _ready() -> void:
 	mouse_position =  Vector2(randi_range(0,1000), randi_range(0,1000));
-	await create_unit(Constants.ENEMY,10000,10,5000, Constants.ENEMY_ADVERSARY, unit_animation, pathfinder_timer);
+	await create_unit(Constants.ENEMY,100,5000, Constants.ENEMY_ADVERSARY, unit_animation, pathfinder_timer);
 	navigation_agent = $NavigationAgent2D
 
 func _physics_process(delta: float) -> void:
@@ -23,5 +23,4 @@ func _on_timer_timeout() -> void:
 	destination_pathfinding(mouse_position);
 
 func _on_projectile_collider_area_entered(area: Area2D) -> void:
-	print("shit shoot")
 	damage_take(area);

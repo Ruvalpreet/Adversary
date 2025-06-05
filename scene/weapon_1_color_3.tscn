@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmw1oimacwgtn"]
+[gd_scene load_steps=8 format=3 uid="uid://bmw1oimacwgtn"]
 
 [ext_resource type="Texture2D" uid="uid://c27onpbb3f6e4" path="res://assets/Cannon1_color3/Cannon1_color3_1.png" id="1_c520d"]
+[ext_resource type="Script" uid="uid://cf1bywmkj1hvn" path="res://script/weapon_1_color_3.gd" id="1_ko548"]
 [ext_resource type="Texture2D" uid="uid://cqdvyfloaolhh" path="res://assets/Cannon1_color3/Cannon1_color3_2.png" id="2_ko548"]
 [ext_resource type="Texture2D" uid="uid://cy3y7tx4d2jea" path="res://assets/Cannon1_color3/Cannon1_color3_3.png" id="3_msbn6"]
 [ext_resource type="Texture2D" uid="uid://b6l3bjrhjtewi" path="res://assets/Cannon1_color3/Cannon1_color3_4.png" id="4_haiy8"]
@@ -25,15 +26,36 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="weapon_1_color_3" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_c520d"]
+radius = 500.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 4.71239
-texture = ExtResource("3_msbn6")
+[node name="weapon_1_color_3" type="Node2D"]
+script = ExtResource("1_ko548")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(27, 0)
 rotation = 4.71239
 sprite_frames = SubResource("SpriteFrames_7qx0v")
 animation = &"shoot"
 frame = 3
 frame_progress = 0.697748
+
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(0, -27)
+target_position = Vector2(0, 500)
+collision_mask = 5
+
+[node name="BulletSpawner" type="Node2D" parent="AnimatedSprite2D"]
+position = Vector2(-1.99995, 54)
+
+[node name="Reload" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c520d")
+
+[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

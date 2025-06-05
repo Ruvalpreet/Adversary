@@ -11,7 +11,7 @@ var mouse_position: Vector2;
 
 func _ready() -> void:
 	mouse_position = get_global_mouse_position();
-	await create_unit(Constants.PLAYER,100,10,5000, Constants.PLAYER_ADVERSARY, unit_animation, pathfinder_timer);
+	await create_unit(Constants.PLAYER,10000,5000, Constants.PLAYER_ADVERSARY, unit_animation, pathfinder_timer);
 	navigation_agent =$NavigationAgent2D
 
 func _physics_process(delta: float) -> void:

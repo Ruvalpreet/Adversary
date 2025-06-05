@@ -4,7 +4,7 @@ const TURN_SPEED: float = 2.5;
 
 var maxHealth: int;
 var current_health: int;
-var damage: int;
+
 var movement_speed: int;
 var new_velocity: Vector2;
 
@@ -16,18 +16,17 @@ var path_finding_timer: Timer;
 
 var navigation_agent: NavigationAgent2D;
 
-func create_unit(unit_type:String, maxHealth: int, damage: int, movement_speed: int, adversary: Array[String], unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer) -> void:
+func create_unit(unit_type:String, maxHealth: int, movement_speed: int, adversary: Array[String], unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer) -> void:
 	if(unit_type == Constants.PLAYER):
 		Global.controllable_character.append(self);
 	add_to_group(unit_type);
 	self.maxHealth = maxHealth;
 	self.current_health = maxHealth;
-	self.damage = damage;
 	self.movement_speed = movement_speed;
 	self.adversary = adversary;
 	self.unit_live_animation = unit_live_animation;
 	self.path_finding_timer = path_finding_timer;
-	
+	unit_live_animation.play(Constants.ANIMATION_IDLE)
 	print("intital data",get_groups());
 
 
@@ -41,9 +40,8 @@ func movement(delta: float) -> void:
 	var next_position = navigation_agent.get_next_path_position()
 	var desired_angle = (next_position - global_position).angle()
 	rotation = lerp_angle(rotation, desired_angle, TURN_SPEED * delta)
-	var forward_dir = Vector2.RIGHT.rotated(rotation)
+	var forward_dir = transform.x;
 	velocity = forward_dir * movement_speed * delta
-
 	move_and_slide()
 
 
