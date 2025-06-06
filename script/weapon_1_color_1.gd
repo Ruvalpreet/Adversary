@@ -9,9 +9,12 @@ func _ready() -> void:
 	raycast_enemy = $AnimatedSprite2D/RayCast2D;
 	projectile_spawn_node = $AnimatedSprite2D/BulletSpawner;
 	projectile_range = 500;
-	damage = 100;
+	damage = 10;
 	reloading_speed = 2.0;
-	shoot_sprite_node = $AnimatedSprite2D
+	shoot_sprite_node = $AnimatedSprite2D;
+	ray_and_shoot_timer = $RayAndShoot;
+	ray_to_find_best_target = $FindBestTarget;
+	check_active_target = $CheckActiveTarget;
 	constructor();
 	
 
@@ -25,11 +28,18 @@ func _on_reload_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	enemies_in_range.append(body);
+	#active_target = body;
 	enable();
-	if(!active_target):
-		active_target = body;
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	enemies_in_range.erase(body);
 	if(enemies_in_range.is_empty()):
 		disable();
+
+
+func _on_ray_and_shoot_timeout() -> void:
+	enemy_in_sight();
+
+
+func _on_check_active_target_timeout() -> void:
+	get_active_target()

@@ -8,8 +8,6 @@ var current_health: int;
 var movement_speed: int;
 var new_velocity: Vector2;
 
-var moving: bool = true;
-
 var adversary: Array[String];
 var unit_live_animation: AnimatedSprite2D;
 var path_finding_timer: Timer;
@@ -31,12 +29,10 @@ func create_unit(unit_type:String, maxHealth: int, movement_speed: int, adversar
 
 
 func movement(delta: float) -> void:
-	if not moving:
-		return
 	if navigation_agent.is_navigation_finished():
 		velocity = Vector2.ZERO
+		set_physics_process(false)
 		return
-
 	var next_position = navigation_agent.get_next_path_position()
 	var desired_angle = (next_position - global_position).angle()
 	rotation = lerp_angle(rotation, desired_angle, TURN_SPEED * delta)
@@ -46,8 +42,9 @@ func movement(delta: float) -> void:
 
 
 func destination_pathfinding(destination: Vector2) -> void:
-	if moving:
-		navigation_agent.target_position = destination
+	if(!is_physics_processing()):
+		set_physics_process(true);
+	navigation_agent.target_position = destination
 
 
 func damage_take(damage_collision_node: Area2D):

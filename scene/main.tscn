@@ -26,3 +26,7 @@ position = Vector2(392, 331)
 position = Vector2(517, 331)
 
 [node name="Enemy_1_color_3" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(887, 148)
+
+[node name="Enemy_1_color_4" parent="." instance=ExtResource("3_wp4xf")]
+position = Vector2(350, 145)

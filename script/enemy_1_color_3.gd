@@ -14,8 +14,8 @@ func _ready() -> void:
 	await create_unit(Constants.ENEMY,100,5000, Constants.ENEMY_ADVERSARY, unit_animation, pathfinder_timer);
 	navigation_agent = $NavigationAgent2D
 
-func _physics_process(delta: float) -> void:
-	movement(delta);
+#func _physics_process(delta: float) -> void:
+	#movement(delta);
 
 
 func _on_timer_timeout() -> void:
