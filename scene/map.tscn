@@ -61,3 +61,5 @@ tile_set = SubResource("TileSet_h0nt1")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.733005, 0.733005, 0.733005, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]

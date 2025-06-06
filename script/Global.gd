@@ -16,4 +16,6 @@ func GET_DEAD_SHIP_SPRITE(location: Vector2, rotation_angle: float):
 	print("what is the direction ", rad_to_deg(rotation_angle))
 	new_dead_ship.global_position = location;
 	new_dead_ship.set_rotation(rotation_angle - deg_to_rad(90));
+	var death_animation: AnimatedSprite2D = new_dead_ship.get_node("DeathAnimatedSprite2D");
 	get_tree().current_scene.add_child(new_dead_ship);
+	death_animation.play(Constants.ANIMATION_DEATH)

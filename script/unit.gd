@@ -12,6 +12,7 @@ var adversary: Array[String];
 var unit_live_animation: AnimatedSprite2D;
 var path_finding_timer: Timer;
 
+var weapon_node: Node2D;
 var navigation_agent: NavigationAgent2D;
 
 func create_unit(unit_type:String, maxHealth: int, movement_speed: int, adversary: Array[String], unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer) -> void:
@@ -53,6 +54,9 @@ func damage_take(damage_collision_node: Area2D):
 	if(damage_collision_node.damage):
 		damage_collision_node.disable_projectile();
 		current_health -= damage_collision_node.damage;
+		var heath_ration: float = float(current_health) / maxHealth;
+		unit_live_animation.set_self_modulate(Color(heath_ration,heath_ration,heath_ration))
+		weapon_node.get_data_from_parent(heath_ration);
 		
 func dead():
 	Global.GET_DEAD_SHIP_SPRITE(self.global_position, transform.x.angle());

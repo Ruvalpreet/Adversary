@@ -112,3 +112,7 @@ func look_at_active_target(delta:float):
 	if(active_target):
 		var direction = (active_target.global_position - global_position).angle();
 		global_rotation = lerp_angle(global_rotation, direction, TURN_SPEED * delta);
+
+func get_data_from_parent(heath_ration: float):
+	shoot_sprite_node.set_self_modulate(Color(heath_ration,heath_ration,heath_ration))
+	
