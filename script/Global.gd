@@ -3,6 +3,23 @@ extends Node
 var controllable_character: Array[CharacterBody2D];
 var selected_character: CharacterBody2D;
 var dead_ship_sprite_1: PackedScene = preload("res://scene/dead_ship_sprite_1.tscn")
+var main_manu: PackedScene = preload("res://scene/main_menu.tscn");
+
+var main_scene: Node2D;
+
+func _ready() -> void:
+	main_scene = main_manu.instantiate();
+	var play_button: Button = main_scene.get_node("play/Button");
+	print("is node their", play_button)
+	play_button.pressed.connect(play)
+	get_tree().current_scene.add_child(main_scene);
+
+
+func play():
+	get_tree().current_scene.remove_child(main_scene);
+	print("shit works")
+	pass
+
 
 func select_character(character: CharacterBody2D):
 	if selected_character:
