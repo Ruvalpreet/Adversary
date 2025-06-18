@@ -1,6 +1,6 @@
 class_name Weapon extends Node2D
 
-const shoot_interval_in_sec: float = 0.2;
+var shoot_interval_in_sec: float = 0.2;
 const TURN_SPEED: float = 1.95;
 const CHECK_FOR_ACTIVE_TARGET: float = 1.0;
 
@@ -77,6 +77,7 @@ func enemy_in_sight():
 		return false;
 
 func shoot_single_round():
+	print("is it working")
 	if(is_reloading):
 		return
 	var bullet: Area2D = projectiles_array[projectiles_left];

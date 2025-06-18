@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://du8thrm6tprtu"]
+[gd_scene load_steps=13 format=3 uid="uid://du8thrm6tprtu"]
 
-[ext_resource type="Script" uid="uid://3182yer47iu3" path="res://script/player.gd" id="1_5s1h1"]
-[ext_resource type="Texture2D" uid="uid://wsotplmoh4c3" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame1.png" id="3_oh5ij"]
-[ext_resource type="Texture2D" uid="uid://cy0ebcecjxntj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame2.png" id="4_hp4bs"]
-[ext_resource type="Texture2D" uid="uid://b8mpujk30yxoj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame3.png" id="5_g2vtq"]
-[ext_resource type="Texture2D" uid="uid://dewoibbi8daqo" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame4.png" id="6_2fvbb"]
-[ext_resource type="PackedScene" uid="uid://dupiq34fn8h0m" path="res://scene/weapon_1_color_1.tscn" id="6_oh5ij"]
+[ext_resource type="Script" uid="uid://3182yer47iu3" path="res://script/player_1_color_1.gd" id="1_yfpg4"]
+[ext_resource type="Texture2D" uid="uid://wsotplmoh4c3" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame1.png" id="2_bskyf"]
+[ext_resource type="Texture2D" uid="uid://cy0ebcecjxntj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame2.png" id="3_ss5oa"]
+[ext_resource type="Texture2D" uid="uid://b8mpujk30yxoj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame3.png" id="4_c7b7p"]
+[ext_resource type="Texture2D" uid="uid://dewoibbi8daqo" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame4.png" id="5_jwqk4"]
+[ext_resource type="PackedScene" uid="uid://dupiq34fn8h0m" path="res://scene/weapon_1_color_1.tscn" id="6_c13qa"]
+[ext_resource type="Texture2D" uid="uid://cpl0qpnqy8tol" path="res://assets/Boats_color1/Boat_color1_1.png" id="7_ycfc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s1h1"]
 size = Vector2(96, 41)
@@ -14,16 +15,16 @@ size = Vector2(96, 41)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_oh5ij")
+"texture": ExtResource("2_bskyf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_hp4bs")
+"texture": ExtResource("3_ss5oa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_g2vtq")
+"texture": ExtResource("4_c7b7p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_2fvbb")
+"texture": ExtResource("5_jwqk4")
 }],
 "loop": true,
 "name": &"idle",
@@ -42,9 +43,9 @@ gradient = SubResource("Gradient_oh5ij")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player_1_color_1" type="CharacterBody2D"]
 collision_mask = 6
-script = ExtResource("1_5s1h1")
+script = ExtResource("1_yfpg4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 100.0
@@ -72,11 +73,16 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProJectile_Collider"]
 shape = SubResource("RectangleShape2D_oh5ij")
 
-[node name="Weapon_1_color_1" parent="." instance=ExtResource("6_oh5ij")]
+[node name="Weapon_1_color_1" parent="." instance=ExtResource("6_c13qa")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(24, 78)
+rotation = 4.71239
+texture = ExtResource("7_ycfc6")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(3, 5)
 scale = Vector2(5.70313, 5.09375)
 texture = SubResource("GradientTexture2D_hp4bs")

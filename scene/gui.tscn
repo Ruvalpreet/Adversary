@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://xddo8ellj385"]
+
+[ext_resource type="Texture2D" uid="uid://ceqo8cterq5ql" path="res://icon.svg" id="1_6p08w"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="player_1" type="Sprite2D" parent="."]
+position = Vector2(820, 570)
+
+[node name="player_2" type="Sprite2D" parent="."]
+position = Vector2(640, 570)
+texture = ExtResource("1_6p08w")
+
+[node name="player_3" type="Sprite2D" parent="."]
+position = Vector2(460, 570)
+texture = ExtResource("1_6p08w")
+
+[node name="player_4" type="Sprite2D" parent="."]
+position = Vector2(280, 570)
+texture = ExtResource("1_6p08w")

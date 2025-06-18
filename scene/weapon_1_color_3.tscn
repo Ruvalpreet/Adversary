@@ -60,6 +60,7 @@ shape = SubResource("CircleShape2D_c520d")
 autostart = true
 
 [node name="CheckActiveTarget" type="Timer" parent="."]
+autostart = true
 
 [node name="FindBestTarget" type="RayCast2D" parent="."]
 
