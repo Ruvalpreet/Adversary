@@ -4,6 +4,7 @@ var controllable_character: Array[CharacterBody2D];
 var selected_character: CharacterBody2D;
 var dead_ship_sprite_1: PackedScene = preload("res://scene/dead_ship_sprite_1.tscn")
 var main_manu: PackedScene = preload("res://scene/main_menu.tscn");
+var game_main: PackedScene = preload("res://scene/main.tscn");
 
 var main_scene: Node2D;
 
@@ -17,8 +18,8 @@ func _ready() -> void:
 
 func play():
 	get_tree().current_scene.remove_child(main_scene);
-	print("shit works")
-	pass
+	var main_game = game_main.instantiate();
+	get_tree().current_scene.add_child(main_game);
 
 
 func select_character(character: CharacterBody2D):

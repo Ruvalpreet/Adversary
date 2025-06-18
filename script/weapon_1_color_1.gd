@@ -28,7 +28,6 @@ func _on_reload_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	enemies_in_range.append(body);
-	#active_target = body;
 	enable();
 
 func _on_area_2d_body_exited(body: Node2D) -> void:

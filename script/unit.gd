@@ -36,6 +36,7 @@ func movement(delta: float) -> void:
 		return
 	var next_position = navigation_agent.get_next_path_position()
 	var desired_angle = (next_position - global_position).angle()
+	#rotation = desired_angle
 	rotation = lerp_angle(rotation, desired_angle, TURN_SPEED * delta)
 	var forward_dir = transform.x;
 	velocity = forward_dir * movement_speed * delta
