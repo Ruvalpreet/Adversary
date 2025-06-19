@@ -1,5 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://btwmu75p73us7"]
 
+[ext_resource type="Script" uid="uid://7yqsj5kl4lxm" path="res://script/main.gd" id="1_k65ib"]
 [ext_resource type="PackedScene" uid="uid://w8u8yw1fvyim" path="res://scene/map.tscn" id="1_v0l8b"]
 [ext_resource type="PackedScene" uid="uid://du8thrm6tprtu" path="res://scene/player_1_color_1.tscn" id="2_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://5wuubgo24sj6" path="res://scene/enemy_1_color_3.tscn" id="3_wp4xf"]
@@ -7,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://2pj6w85pevgu" path="res://scene/obstacle.tscn" id="5_0ha60"]
 [ext_resource type="PackedScene" uid="uid://xddo8ellj385" path="res://scene/gui.tscn" id="5_4j5ol"]
 [ext_resource type="PackedScene" uid="uid://c5t1uvy6vu23f" path="res://scene/player_2_color_1.tscn" id="7_p1hux"]
-[ext_resource type="PackedScene" uid="uid://qokmk1yju3go" path="res://scene/enemy_2_color_3.tscn" id="8_tqoya"]
 [ext_resource type="PackedScene" uid="uid://0qtdisvmojev" path="res://scene/enemy_3_color_3.tscn" id="9_k65ib"]
 [ext_resource type="PackedScene" uid="uid://b6cdc7ibkplne" path="res://scene/enemy_4_color_3.tscn" id="10_wscrc"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_k65ib")
 
 [node name="Map" parent="." instance=ExtResource("1_v0l8b")]
 
@@ -40,9 +41,6 @@ visible = false
 
 [node name="player_2_color_2" parent="." instance=ExtResource("7_p1hux")]
 position = Vector2(656, 565)
-
-[node name="enemy_2_color_3" parent="." instance=ExtResource("8_tqoya")]
-position = Vector2(62, 235)
 
 [node name="Enemy_3_color_3" parent="." instance=ExtResource("9_k65ib")]
 position = Vector2(546, 114)

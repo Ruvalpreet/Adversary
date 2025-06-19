@@ -3,14 +3,14 @@ extends Weapon
 var projectile_enemy: PackedScene = preload("res://scene/enemy_projectile_single.tscn")
 
 func _ready() -> void:
-	total_number_of_projectiles = 20;
+	total_number_of_projectiles = 10;
 	reload_timer_node = $Reload;
 	projectile = projectile_enemy;
 	raycast_enemy = $AnimatedSprite2D/RayCast2D;
 	projectile_spawn_node = $AnimatedSprite2D/BulletSpawner;
-	projectile_range = 400;
+	projectile_range = 350;
 	shoot_interval_in_sec = 0.4;
-	damage = 10;
+	damage = 5;
 	reloading_speed = 2.0;
 	shoot_sprite_node = $AnimatedSprite2D;
 	ray_and_shoot_timer = $RayAndShoot;

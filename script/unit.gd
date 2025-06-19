@@ -1,4 +1,5 @@
 class_name Unit extends CharacterBody2D
+signal unit_died
 
 const TURN_SPEED: float = 2.5;
 
@@ -60,5 +61,6 @@ func damage_take(damage_collision_node: Area2D):
 		weapon_node.get_data_from_parent(heath_ration);
 		
 func dead():
+	unit_died.emit();
 	Global.GET_DEAD_SHIP_SPRITE(self.global_position, transform.x.angle());
 	queue_free();
