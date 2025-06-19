@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://buxxm2aoxyqm1"]
+
+[ext_resource type="Texture2D" uid="uid://dyj0mxmxtnnsu" path="res://assets/Cannon3_color3/Cannon3_color3_1.png" id="1_5uhmm"]
+[ext_resource type="Script" uid="uid://cde2yv7ku1b75" path="res://script/weapon_3_color_3.gd" id="1_7obnn"]
+[ext_resource type="Texture2D" uid="uid://w7hgypi43ceg" path="res://assets/Cannon3_color3/Cannon3_color3_2.png" id="2_7obnn"]
+[ext_resource type="Texture2D" uid="uid://cmsahalriy77m" path="res://assets/Cannon3_color3/Cannon3_color3_3.png" id="3_exp55"]
+[ext_resource type="Texture2D" uid="uid://0bou3vspndxn" path="res://assets/Cannon3_color3/Cannon3_color3_4.png" id="4_d3yfv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_spbgh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5uhmm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7obnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_exp55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d3yfv")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uhmm"]
+
+[node name="Weapon_3_color_3" type="Node2D"]
+script = ExtResource("1_7obnn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 0)
+rotation = 4.71239
+sprite_frames = SubResource("SpriteFrames_spbgh")
+animation = &"shoot"
+
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(0, -9)
+collision_mask = 5
+
+[node name="BulletSpawner" type="Node2D" parent="AnimatedSprite2D"]
+position = Vector2(1, 34)
+
+[node name="Reload" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5uhmm")
+
+[node name="RayAndShoot" type="Timer" parent="."]
+
+[node name="CheckActiveTarget" type="Timer" parent="."]
+
+[node name="FindBestTarget" type="RayCast2D" parent="."]
+collision_mask = 5
+
+[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="RayAndShoot" to="." method="_on_ray_and_shoot_timeout"]
+[connection signal="timeout" from="CheckActiveTarget" to="." method="_on_check_active_target_timeout"]

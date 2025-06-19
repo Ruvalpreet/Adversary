@@ -61,6 +61,7 @@ shape = SubResource("RectangleShape2D_1tnna")
 path_desired_distance = 40.0
 
 [node name="weapon_1_color_3" parent="." instance=ExtResource("6_qapfc")]
+position = Vector2(-4, 0)
 
 [connection signal="timeout" from="PathFinder_timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Projectile_Collider" to="." method="_on_projectile_collider_area_entered"]
