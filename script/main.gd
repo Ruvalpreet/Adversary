@@ -4,16 +4,26 @@ extends Node2D
 @onready var enemy_3: PackedScene = preload("res://scene/enemy_4_color_3.tscn");
 @onready var enemy_4: PackedScene = preload("res://scene/enemy_3_color_3.tscn");
 
+@onready var screen_ui: Control = $CanvasLayer/GUI;
+var total_score_node: Label;
+var total_enemy_node: Label;
 
+var selected_character: CharacterBody2D;
+
+var total_score:int;
 var total_number_of_enemies_on_map: int;
 
 func _ready() -> void:
+	total_score_node = screen_ui.get_node("total_score");
+	total_enemy_node = screen_ui. get_node("total_enemies");
 	spawn_enemy_1();
 	spawn_enemy_1();
 
-func enemy_die():
-	print("shti works")
+func enemy_die(enemy_score: int):
+	total_score += enemy_score
 	total_number_of_enemies_on_map -= 1;
+	total_score_node.set_text("Total score: " + str(total_score));
+	total_enemy_node.set_text("Total Enemies: " + str(total_number_of_enemies_on_map))
 	call_deferred("spawn_random_enemy")
 
 func spawn_enemy_1():
@@ -58,3 +68,10 @@ func spawn_random_enemy():
 	else :
 		spawn_enemy_4();
 		spawn_enemy_4();
+		
+
+func select_character(character: CharacterBody2D):
+	if selected_character:
+		selected_character.is_selected = false
+	selected_character = character
+	selected_character.is_selected = true

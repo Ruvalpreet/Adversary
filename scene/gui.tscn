@@ -7,16 +7,36 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="player_1" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(820, 570)
 
 [node name="player_2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(640, 570)
 texture = ExtResource("1_6p08w")
 
 [node name="player_3" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(460, 570)
 texture = ExtResource("1_6p08w")
 
 [node name="player_4" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(280, 570)
 texture = ExtResource("1_6p08w")
+
+[node name="total_score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 73.0
+offset_right = 539.0
+offset_bottom = 96.0
+text = "Total score: 0"
+
+[node name="total_enemies" type="Label" parent="."]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 64.0
+offset_right = 259.0
+offset_bottom = 87.0
+text = "Total Enemies: 0"

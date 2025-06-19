@@ -1,5 +1,5 @@
 class_name Unit extends CharacterBody2D
-signal unit_died
+signal unit_died(enemy_score:int)
 
 const TURN_SPEED: float = 2.5;
 
@@ -16,10 +16,14 @@ var path_finding_timer: Timer;
 var weapon_node: Node2D;
 var navigation_agent: NavigationAgent2D;
 
+var unit_score: int ;
+var unit_type: String;
+
 func create_unit(unit_type:String, maxHealth: int, movement_speed: int, adversary: Array[String], unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer) -> void:
 	if(unit_type == Constants.PLAYER):
 		Global.controllable_character.append(self);
 	add_to_group(unit_type);
+	self.unit_type = unit_type;
 	self.maxHealth = maxHealth;
 	self.current_health = maxHealth;
 	self.movement_speed = movement_speed;
@@ -61,6 +65,7 @@ func damage_take(damage_collision_node: Area2D):
 		weapon_node.get_data_from_parent(heath_ration);
 		
 func dead():
-	unit_died.emit();
+	if (unit_type == Constants.ENEMY):
+		unit_died.emit(unit_score);
 	Global.GET_DEAD_SHIP_SPRITE(self.global_position, transform.x.angle());
 	queue_free();
