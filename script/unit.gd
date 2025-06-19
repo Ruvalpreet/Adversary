@@ -50,6 +50,7 @@ func destination_pathfinding(destination: Vector2) -> void:
 
 
 func damage_take(damage_collision_node: Area2D):
+	print("hello")
 	if(is_zero_approx(current_health)):
 		dead()
 	if(damage_collision_node.damage):

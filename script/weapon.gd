@@ -27,11 +27,13 @@ var active_target: CharacterBody2D;
 var ray_to_find_best_target: RayCast2D;
 var check_active_target: Timer;
 
-
+var enemy_detector_arear_collider: CollisionShape2D;
 var shoot_sprite_node : AnimatedSprite2D;
 
 func constructor():
 	self.projectiles_left = total_number_of_projectiles - 1;
+	raycast_enemy.set_target_position(Vector2(0, projectile_range))
+	enemy_detector_arear_collider.shape.radius = projectile_range
 	reload_timer_node.set_one_shot(true);
 	ray_and_shoot_timer.set_wait_time(shoot_interval_in_sec);
 	check_active_target.set_wait_time(CHECK_FOR_ACTIVE_TARGET);
@@ -77,7 +79,6 @@ func enemy_in_sight():
 		return false;
 
 func shoot_single_round():
-	print("is it working")
 	if(is_reloading):
 		return
 	var bullet: Area2D = projectiles_array[projectiles_left];

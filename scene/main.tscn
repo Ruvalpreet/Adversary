@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cya2sdno71l27" path="res://scene/fps_counter.tscn" id="4_brvut"]
 [ext_resource type="PackedScene" uid="uid://2pj6w85pevgu" path="res://scene/obstacle.tscn" id="5_0ha60"]
 [ext_resource type="PackedScene" uid="uid://xddo8ellj385" path="res://scene/gui.tscn" id="5_4j5ol"]
-[ext_resource type="PackedScene" uid="uid://c5t1uvy6vu23f" path="res://scene/player_2_color_2.tscn" id="7_p1hux"]
+[ext_resource type="PackedScene" uid="uid://c5t1uvy6vu23f" path="res://scene/player_2_color_1.tscn" id="7_p1hux"]
 
 [node name="Main" type="Node2D"]
 

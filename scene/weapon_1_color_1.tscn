@@ -27,7 +27,6 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5yft6"]
-radius = 500.0
 
 [node name="Weapon_1_color_1" type="Node2D"]
 script = ExtResource("1_5yft6")
@@ -41,7 +40,6 @@ animation = &"shoot"
 [node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
 modulate = Color(0.0392157, 0, 0, 1)
 position = Vector2(0, -27)
-target_position = Vector2(0, 500)
 collision_mask = 6
 
 [node name="BulletSpawner" type="Node2D" parent="AnimatedSprite2D"]

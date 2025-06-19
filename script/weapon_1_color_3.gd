@@ -15,6 +15,7 @@ func _ready() -> void:
 	ray_and_shoot_timer = $RayAndShoot;
 	ray_to_find_best_target = $FindBestTarget;
 	check_active_target = $CheckActiveTarget;
+	enemy_detector_arear_collider =$Area2D/CollisionShape2D;
 	constructor();
 	
 

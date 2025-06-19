@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://c5t1uvy6vu23f"]
 
-[ext_resource type="Script" uid="uid://8uheqomsqgo" path="res://script/player_2_color_2.gd" id="1_wai5n"]
-[ext_resource type="Texture2D" uid="uid://6lanh218tlta" path="res://assets/Boat2_water_animation_color/Boat2_water_frame1.png" id="1_yb72b"]
-[ext_resource type="Texture2D" uid="uid://b4sqsfdfi7p2l" path="res://assets/Boat2_water_animation_color/Boat2_water_frame2.png" id="2_wai5n"]
-[ext_resource type="Texture2D" uid="uid://l5o1436jjbp8" path="res://assets/Boat2_water_animation_color/Boat2_water_frame3.png" id="3_t6nk4"]
-[ext_resource type="Texture2D" uid="uid://cna85n3awvcfy" path="res://assets/Boat2_water_animation_color/Boat2_water_frame4.png" id="4_svxev"]
-[ext_resource type="PackedScene" uid="uid://70s624m6ushv" path="res://scene/weapon_2_color_1.tscn" id="6_t6nk4"]
+[ext_resource type="Script" uid="uid://8uheqomsqgo" path="res://script/player_2_color_1.gd" id="1_4frok"]
+[ext_resource type="Texture2D" uid="uid://6lanh218tlta" path="res://assets/Boat2_water_animation_color/Boat2_water_frame1.png" id="2_3uv7e"]
+[ext_resource type="Texture2D" uid="uid://b4sqsfdfi7p2l" path="res://assets/Boat2_water_animation_color/Boat2_water_frame2.png" id="3_0b4te"]
+[ext_resource type="Texture2D" uid="uid://l5o1436jjbp8" path="res://assets/Boat2_water_animation_color/Boat2_water_frame3.png" id="4_w0s5u"]
+[ext_resource type="Texture2D" uid="uid://cna85n3awvcfy" path="res://assets/Boat2_water_animation_color/Boat2_water_frame4.png" id="5_ty3jp"]
+[ext_resource type="PackedScene" uid="uid://b18redfy68gj8" path="res://scene/weapon_3_color_1.tscn" id="6_4frok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yb72b"]
 size = Vector2(96, 50)
@@ -14,16 +14,16 @@ size = Vector2(96, 50)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_yb72b")
+"texture": ExtResource("2_3uv7e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_wai5n")
+"texture": ExtResource("3_0b4te")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_t6nk4")
+"texture": ExtResource("4_w0s5u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_svxev")
+"texture": ExtResource("5_ty3jp")
 }],
 "loop": true,
 "name": &"idle",
@@ -33,9 +33,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wai5n"]
 size = Vector2(96, 50)
 
-[node name="player_2_color_2" type="CharacterBody2D"]
+[node name="player_2_color_1" type="CharacterBody2D"]
 collision_mask = 6
-script = ExtResource("1_wai5n")
+script = ExtResource("1_4frok")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yb72b")
@@ -60,8 +60,8 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProJectile_Collider"]
 shape = SubResource("RectangleShape2D_wai5n")
 
-[node name="Weapon_2_color_1" parent="." instance=ExtResource("6_t6nk4")]
-position = Vector2(-22, 0)
+[node name="Weapon_3_color_1" parent="." instance=ExtResource("6_4frok")]
+position = Vector2(29, 0)
 
 [connection signal="timeout" from="PathFinding_timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="ProJectile_Collider" to="." method="_on_projectile_collider_area_entered"]

@@ -23,4 +23,5 @@ func _on_timer_timeout() -> void:
 	destination_pathfinding(mouse_position);
 
 func _on_projectile_collider_area_entered(area: Area2D) -> void:
+	print("shit run")
 	damage_take(area);
