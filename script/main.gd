@@ -16,8 +16,8 @@ var total_number_of_enemies_on_map: int;
 func _ready() -> void:
 	total_score_node = screen_ui.get_node("total_score");
 	total_enemy_node = screen_ui. get_node("total_enemies");
-	spawn_enemy_1();
-	spawn_enemy_1();
+	spawn_random_enemy();
+	spawn_random_enemy();
 
 func enemy_die(enemy_score: int):
 	total_score += enemy_score

@@ -21,7 +21,8 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	look_at_active_target(delta);
+	#look_at_active_target(delta);
+	look_at_mouse_target(delta);
 
 func _on_reload_timeout() -> void:
 	reload_ammo()
@@ -38,6 +39,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_ray_and_shoot_timeout() -> void:
 	enemy_in_sight();
+	if(Input.is_action_pressed("shoot")):
+		shoot_single_round();
 
 
 func _on_check_active_target_timeout() -> void:

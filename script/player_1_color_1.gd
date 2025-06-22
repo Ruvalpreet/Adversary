@@ -16,12 +16,23 @@ func _ready() -> void:
 	navigation_agent =$NavigationAgent2D
 
 func _physics_process(delta: float) -> void:
-	movement(delta);
+	player_controls(delta);
 
 
-func _on_timer_timeout() -> void:
-	mouse_position = get_global_mouse_position();
-	destination_pathfinding(mouse_position);
+#func _on_timer_timeout() -> void:
+	#mouse_position = get_global_mouse_position();
+	#destination_pathfinding(mouse_position);
 
 func _on_projectile_collider_area_entered(area: Area2D) -> void:
 	damage_take(area);
+
+func player_controls(delta: float):
+	var direction: Vector2;
+	if(Input.is_action_pressed("forward")):
+		direction += transform.x.normalized() * delta * movement_speed;
+	if(Input.is_action_pressed("left")):
+		rotation -= TURN_SPEED * delta 
+	if(Input.is_action_pressed("right")):
+		rotation += TURN_SPEED * delta 
+	velocity = direction;
+	move_and_slide()

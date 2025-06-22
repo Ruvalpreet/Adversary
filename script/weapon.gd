@@ -118,3 +118,7 @@ func look_at_active_target(delta:float):
 func get_data_from_parent(heath_ration: float):
 	shoot_sprite_node.set_self_modulate(Color(heath_ration,heath_ration,heath_ration))
 	
+func look_at_mouse_target(delta:float):
+	var direction = (get_global_mouse_position() - global_position).angle();
+	global_rotation = lerp_angle(global_rotation, direction, TURN_SPEED * delta);
+	
