@@ -6,7 +6,12 @@ var speed:int;
 var start_position:Vector2
 var max_distance: float; 
 var damage: int;
+
+func _ready() -> void:
+	visible = false;
+
 func constructor( direction: Vector2, max_distance: float,damage: int ):
+	visible = true;
 	self.direction = direction.normalized();
 	self.speed = Constants.PROJECTILE_VELOCITY;
 	self.max_distance = max_distance;
@@ -25,4 +30,4 @@ func cal_distance_travel(initial_position: Vector2, current_position: Vector2) -
 
 func disable_projectile():
 	set_physics_process(false);
-	self.global_position = Vector2(-5000,-5000)
+	self.global_position = Vector2(-50000,-50000)

@@ -1,6 +1,6 @@
 class_name Weapon extends Node2D
 
-var shoot_interval_in_sec: float = 0.2;
+var shoot_interval_in_sec: float;
 const TURN_SPEED: float = 1.95;
 const CHECK_FOR_ACTIVE_TARGET: float = 1.0;
 
@@ -30,6 +30,8 @@ var check_active_target: Timer;
 var enemy_detector_arear_collider: CollisionShape2D;
 var shoot_sprite_node : AnimatedSprite2D;
 
+var can_shoot: bool;
+
 func constructor():
 	self.projectiles_left = total_number_of_projectiles - 1;
 	raycast_enemy.set_target_position(Vector2(0, projectile_range))
@@ -37,7 +39,6 @@ func constructor():
 	reload_timer_node.set_one_shot(true);
 	ray_and_shoot_timer.set_wait_time(shoot_interval_in_sec);
 	check_active_target.set_wait_time(CHECK_FOR_ACTIVE_TARGET);
-	disable();
 	for i in total_number_of_projectiles:
 		var bullet: Area2D = projectile.instantiate();
 		projectiles_array.append(bullet)
@@ -50,6 +51,7 @@ func get_active_target():
 		ray_to_find_best_target.target_position = ray_to_find_best_target.to_local(ray_to_find_best_target.global_position + direction.normalized() * projectile_range);
 		ray_to_find_best_target.force_raycast_update()
 		if ray_to_find_best_target.is_colliding() and ray_to_find_best_target.get_collider() == active_target:
+			
 			return
 		else:
 			active_target = null
@@ -83,7 +85,6 @@ func shoot_single_round():
 		return
 	var bullet: Area2D = projectiles_array[projectiles_left];
 	bullet.transform.origin = projectile_spawn_node.global_position;
-	
 	bullet.set_global_rotation(global_rotation);
 	var direction = global_transform.x;
 	direction.x = randf_range(direction.x + Constants.PROJECTILE_ANGLE_ERROR, direction.x - Constants.PROJECTILE_ANGLE_ERROR);
@@ -117,8 +118,4 @@ func look_at_active_target(delta:float):
 
 func get_data_from_parent(heath_ration: float):
 	shoot_sprite_node.set_self_modulate(Color(heath_ration,heath_ration,heath_ration))
-	
-func look_at_mouse_target(delta:float):
-	var direction = (get_global_mouse_position() - global_position).angle();
-	global_rotation = lerp_angle(global_rotation, direction, TURN_SPEED * delta);
 	

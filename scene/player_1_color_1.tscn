@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://du8thrm6tprtu"]
 
 [ext_resource type="Script" uid="uid://3182yer47iu3" path="res://script/player_1_color_1.gd" id="1_yfpg4"]
-[ext_resource type="Texture2D" uid="uid://wsotplmoh4c3" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame1.png" id="2_bskyf"]
-[ext_resource type="Texture2D" uid="uid://cy0ebcecjxntj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame2.png" id="3_ss5oa"]
-[ext_resource type="Texture2D" uid="uid://b8mpujk30yxoj" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame3.png" id="4_c7b7p"]
-[ext_resource type="Texture2D" uid="uid://dewoibbi8daqo" path="res://assets/Boat1_water_animation_color1/Boat1_water_frame4.png" id="5_jwqk4"]
+[ext_resource type="Texture2D" uid="uid://bel0feavc2a1c" path="res://assets/Boat3_water_animation_color1/Boat3_water_frame1.png" id="2_yfpg4"]
+[ext_resource type="Texture2D" uid="uid://c8aptrme55p7l" path="res://assets/Boat3_water_animation_color1/Boat3_water_frame2.png" id="3_bskyf"]
+[ext_resource type="Texture2D" uid="uid://bjqlyrclkjkfd" path="res://assets/Boat3_water_animation_color1/Boat3_water_frame3.png" id="4_ss5oa"]
+[ext_resource type="Texture2D" uid="uid://c0tonty3xddqj" path="res://assets/Boat3_water_animation_color1/Boat3_water_frame4.png" id="5_c7b7p"]
 [ext_resource type="PackedScene" uid="uid://dupiq34fn8h0m" path="res://scene/weapon_1_color_1.tscn" id="6_c13qa"]
 [ext_resource type="Texture2D" uid="uid://cpl0qpnqy8tol" path="res://assets/Boats_color1/Boat_color1_1.png" id="7_ycfc6"]
 
@@ -15,16 +15,16 @@ size = Vector2(96, 41)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_bskyf")
+"texture": ExtResource("2_yfpg4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ss5oa")
+"texture": ExtResource("3_bskyf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_c7b7p")
+"texture": ExtResource("4_ss5oa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_jwqk4")
+"texture": ExtResource("5_c7b7p")
 }],
 "loop": true,
 "name": &"idle",
@@ -64,7 +64,8 @@ autostart = true
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_ml7e8")
 animation = &"idle"
-frame_progress = 0.978996
+frame = 1
+frame_progress = 0.178933
 
 [node name="ProJectile_Collider" type="Area2D" parent="."]
 collision_layer = 0
@@ -74,6 +75,7 @@ collision_mask = 32
 shape = SubResource("RectangleShape2D_oh5ij")
 
 [node name="Weapon_1_color_1" parent="." instance=ExtResource("6_c13qa")]
+position = Vector2(23, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -88,6 +90,7 @@ scale = Vector2(5.70313, 5.09375)
 texture = SubResource("GradientTexture2D_hp4bs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.4, 1.4)
 
 [connection signal="timeout" from="PathFinding_timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="ProJectile_Collider" to="." method="_on_projectile_collider_area_entered"]
