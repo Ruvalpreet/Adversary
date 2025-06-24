@@ -35,7 +35,7 @@ size = Vector2(90, 47)
 
 [node name="enemy_2_color_3" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 7
 script = ExtResource("1_wgjgv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

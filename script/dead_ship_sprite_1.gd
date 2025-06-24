@@ -9,12 +9,13 @@ func _ready() -> void:
 	var rand: float = randf();
 	if(rand < 0.25):
 		dead_sprite_1.visible = true;
-	elif (rand < 0.5):
+	elif(rand < 0.5):
 		dead_sprite_2.visible = true;
-	if(rand < 0.75):
+	elif(rand < 0.75):
 		dead_sprite_3.visible = true;
 	else:
 		dead_sprite_4.visible = true;
+	print("rand value", rand)
 
 func _on_timer_timeout() -> void:
 	queue_free()

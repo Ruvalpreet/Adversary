@@ -73,6 +73,4 @@ func select_character(character: CharacterBody2D):
 	selected_character = character
 	selected_character.is_selected = true
 	
-func _unhandled_input(event: InputEvent) -> void:
-	if(event.is_action_pressed("ui_cancel")):
-		get_tree().paused = true;
+#w

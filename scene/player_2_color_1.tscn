@@ -34,7 +34,7 @@ animations = [{
 size = Vector2(96, 50)
 
 [node name="player_2_color_1" type="CharacterBody2D"]
-collision_mask = 6
+collision_mask = 7
 script = ExtResource("1_4frok")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
