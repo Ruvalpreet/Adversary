@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://c2tai2e2k51tq"]
+[gd_scene load_steps=32 format=3 uid="uid://c2tai2e2k51tq"]
 
 [ext_resource type="Texture2D" uid="uid://p37kv1xbaoq3" path="res://assets/Broken_asset/Broken_asset2.png" id="1_5klnk"]
 [ext_resource type="Texture2D" uid="uid://w62imlwcxoeu" path="res://assets/PixelSimulations/Explosion4/0001.png" id="2_2aksc"]
+[ext_resource type="Script" uid="uid://qrngpha3lw0e" path="res://script/dead_ship_sprite_1.gd" id="2_olowl"]
 [ext_resource type="Texture2D" uid="uid://cbpxmxxe14gc6" path="res://assets/PixelSimulations/Explosion4/0002.png" id="3_olowl"]
 [ext_resource type="Texture2D" uid="uid://ceoip5aueuuds" path="res://assets/PixelSimulations/Explosion4/0003.png" id="4_h121h"]
 [ext_resource type="Texture2D" uid="uid://1d08rk5ibiqp" path="res://assets/PixelSimulations/Explosion4/0004.png" id="5_s0746"]
@@ -26,6 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://b7ddiwan3tu1r" path="res://assets/PixelSimulations/Explosion4/0023.png" id="24_2ncod"]
 [ext_resource type="Texture2D" uid="uid://bo0gcos3pdsjd" path="res://assets/PixelSimulations/Explosion4/0024.png" id="25_lmspr"]
 [ext_resource type="Texture2D" uid="uid://b3eex3lvh8xtp" path="res://assets/PixelSimulations/Explosion4/0025.png" id="26_sx1y7"]
+[ext_resource type="Texture2D" uid="uid://c3c2yrloe72ya" path="res://assets/Broken_asset/Broken_asset1.png" id="28_rgtrg"]
+[ext_resource type="Texture2D" uid="uid://t8iieoo7alyb" path="res://assets/Broken_asset/Broken_asset3.png" id="29_jyra2"]
+[ext_resource type="Texture2D" uid="uid://020n2fv48vco" path="res://assets/Broken_asset/Broken_asset4.png" id="30_eil85"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y5jq8"]
 animations = [{
@@ -110,11 +114,35 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Dead_ship_sprite_1" type="Sprite2D"]
+[node name="Dead_ship_sprite_1" type="Node2D"]
+script = ExtResource("2_olowl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="dead_1" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_5klnk")
+
+[node name="dead_2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("28_rgtrg")
+
+[node name="dead_3" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("29_jyra2")
+
+[node name="dead_4" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("30_eil85")
 
 [node name="DeathAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 12)
 scale = Vector2(4.1875, 3.25391)
 sprite_frames = SubResource("SpriteFrames_y5jq8")
 animation = &"death"
+frame = 24
+frame_progress = 1.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

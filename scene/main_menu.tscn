@@ -15,7 +15,7 @@ script = ExtResource("1_14wem")
 [node name="Background" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(577.5, 323)
-scale = Vector2(1.79531, 1.8)
+scale = Vector2(3, 3.008)
 texture = ExtResource("1_hxu56")
 
 [node name="play" type="Sprite2D" parent="."]

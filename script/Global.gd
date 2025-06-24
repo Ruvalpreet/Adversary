@@ -22,8 +22,7 @@ func play():
 
 
 func GET_DEAD_SHIP_SPRITE(location: Vector2, rotation_angle: float):
-	var new_dead_ship: Sprite2D = dead_ship_sprite_1.instantiate();
-	new_dead_ship.visible = true;
+	var new_dead_ship: Node2D = dead_ship_sprite_1.instantiate();
 	new_dead_ship.global_position = location;
 	new_dead_ship.set_rotation(rotation_angle - deg_to_rad(90));
 	var death_animation: AnimatedSprite2D = new_dead_ship.get_node("DeathAnimatedSprite2D");

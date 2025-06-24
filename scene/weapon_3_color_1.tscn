@@ -16,10 +16,10 @@ animations = [{
 "texture": ExtResource("2_ovvgi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_lutgj")
+"texture": ExtResource("4_dlueh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_dlueh")
+"texture": ExtResource("3_lutgj")
 }],
 "loop": false,
 "name": &"shoot",

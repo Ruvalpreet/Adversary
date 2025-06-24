@@ -7,21 +7,17 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="player_1" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(820, 570)
 
 [node name="player_2" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(640, 570)
 texture = ExtResource("1_6p08w")
 
 [node name="player_3" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(460, 570)
 texture = ExtResource("1_6p08w")
 
 [node name="player_4" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(280, 570)
 texture = ExtResource("1_6p08w")
 

@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	mouse_position =  Vector2(randi_range(0,1000), randi_range(0,1000))
+	mouse_position =  Vector2(randi_range(-300,1500), randi_range(-300,1500))
 	destination_pathfinding(mouse_position);
 
 func _on_projectile_collider_area_entered(area: Area2D) -> void:

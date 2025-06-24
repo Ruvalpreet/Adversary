@@ -16,10 +16,10 @@ animations = [{
 "texture": ExtResource("2_7obnn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_exp55")
+"texture": ExtResource("4_d3yfv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_d3yfv")
+"texture": ExtResource("3_exp55")
 }],
 "loop": false,
 "name": &"shoot",
@@ -36,6 +36,8 @@ position = Vector2(9, 0)
 rotation = 4.71239
 sprite_frames = SubResource("SpriteFrames_spbgh")
 animation = &"shoot"
+frame = 3
+frame_progress = 1.0
 
 [node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
 position = Vector2(0, -9)

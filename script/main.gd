@@ -15,9 +15,10 @@ var total_number_of_enemies_on_map: int;
 
 func _ready() -> void:
 	total_score_node = screen_ui.get_node("total_score");
-	total_enemy_node = screen_ui. get_node("total_enemies");
-	spawn_random_enemy();
-	spawn_random_enemy();
+	total_enemy_node = screen_ui.get_node("total_enemies");
+	if(total_number_of_enemies_on_map <= 50):
+		spawn_random_enemy();
+		spawn_random_enemy();
 
 func unit_die(enemy_score: int,unit_type):
 	if(unit_type == Constants.PLAYER):
@@ -71,3 +72,7 @@ func select_character(character: CharacterBody2D):
 		selected_character.is_selected = false
 	selected_character = character
 	selected_character.is_selected = true
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if(event.is_action_pressed("ui_cancel")):
+		get_tree().paused = true;

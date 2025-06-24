@@ -9,7 +9,7 @@ extends Unit
 var mouse_position: Vector2;
 
 func _ready() -> void:
-	mouse_position =  Vector2(randi_range(0,1000), randi_range(0,1000));
+	mouse_position =  Vector2(randi_range(-300,1000), randi_range(-300,1000))
 	weapon_node = $weapon_4_color_3;
 	unit_score = 100;
 	create_unit(Constants.ENEMY,100,5000, Constants.ENEMY_ADVERSARY, unit_animation, pathfinder_timer);
@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	mouse_position =  Vector2(randi_range(0,1000), randi_range(0,1000))
+	mouse_position =  Vector2(randi_range(-300,1500), randi_range(-300,1500))
 	destination_pathfinding(mouse_position);
 
 func _on_projectile_collider_area_entered(area: Area2D) -> void:

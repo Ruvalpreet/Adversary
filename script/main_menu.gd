@@ -48,7 +48,7 @@ func spawn_ally_1():
 	ally_1_instance.unit_died.connect(unit_die)
 	ally_1_instance.global_position = Vector2(randi_range(-1000,0), randi_range(900,1000))
 	map.add_child(ally_1_instance);
-	total_number_of_enemies_on_map += 1;
+	total_number_of_allies_on_map += 1;
 
 func spawn_random_enemy():
 	var rand: float = randf()
