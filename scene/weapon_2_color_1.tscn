@@ -1,45 +1,50 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1rgwcai0filq"]
+[gd_scene load_steps=8 format=3 uid="uid://b18redfy68gj8"]
 
-[ext_resource type="Script" uid="uid://botkx82g5c45w" path="res://script/weapon_3_color_1.gd" id="1_ovvgi"]
-[ext_resource type="Texture2D" uid="uid://d2lwcuylrw66e" path="res://assets/Cannon4_color1/Cannon4_color1_1.png" id="1_wfptm"]
-[ext_resource type="Texture2D" uid="uid://bqk2m6h2458j5" path="res://assets/Cannon4_color1/Cannon4_color1_2.png" id="2_2t58i"]
-[ext_resource type="Texture2D" uid="uid://8r13x30g7rwh" path="res://assets/Cannon4_color1/Cannon4_color1_3.png" id="3_ovvgi"]
+[ext_resource type="Script" uid="uid://bel5j3simvn85" path="res://script/weapon_2_color_1.gd" id="1_8ntbn"]
+[ext_resource type="Texture2D" uid="uid://cj6y872xw4lpk" path="res://assets/Cannon3_color1/Cannon3_color1_1.png" id="2_xrcv8"]
+[ext_resource type="Texture2D" uid="uid://dn01opyqoy8ws" path="res://assets/Cannon3_color1/Cannon3_color1_2.png" id="3_awcbe"]
+[ext_resource type="Texture2D" uid="uid://dvdlwvva0ayps" path="res://assets/Cannon3_color1/Cannon3_color1_4.png" id="4_ucr02"]
+[ext_resource type="Texture2D" uid="uid://c8nsutt3uic6s" path="res://assets/Cannon3_color1/Cannon3_color1_3.png" id="5_lbylk"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_x2g3u"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ia4bc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2t58i")
+"texture": ExtResource("2_xrcv8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ovvgi")
+"texture": ExtResource("3_awcbe")
 }, {
 "duration": 1.0,
-"texture": ExtResource("1_wfptm")
+"texture": ExtResource("4_ucr02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lbylk")
 }],
 "loop": false,
 "name": &"shoot",
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wfptm"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2t58i"]
 
-[node name="weapon_3_color_1" type="Node2D"]
-script = ExtResource("1_ovvgi")
+[node name="Weapon_2_color_1" type="Node2D"]
+script = ExtResource("1_8ntbn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(10, 1)
 rotation = 4.71239
-sprite_frames = SubResource("SpriteFrames_x2g3u")
+sprite_frames = SubResource("SpriteFrames_ia4bc")
 animation = &"shoot"
-frame = 2
+frame = 3
 frame_progress = 1.0
 
 [node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(1, -10)
 collision_mask = 6
 
 [node name="BulletSpawner" type="Node2D" parent="AnimatedSprite2D"]
-position = Vector2(1, 26)
+position = Vector2(1, 34)
 
 [node name="Reload" type="Timer" parent="."]
 
@@ -48,7 +53,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_wfptm")
+shape = SubResource("CircleShape2D_2t58i")
 
 [node name="RayAndShoot" type="Timer" parent="."]
 

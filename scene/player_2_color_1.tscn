@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b4sqsfdfi7p2l" path="res://assets/Boat2_water_animation_color/Boat2_water_frame2.png" id="3_0b4te"]
 [ext_resource type="Texture2D" uid="uid://l5o1436jjbp8" path="res://assets/Boat2_water_animation_color/Boat2_water_frame3.png" id="4_w0s5u"]
 [ext_resource type="Texture2D" uid="uid://cna85n3awvcfy" path="res://assets/Boat2_water_animation_color/Boat2_water_frame4.png" id="5_ty3jp"]
-[ext_resource type="PackedScene" uid="uid://b18redfy68gj8" path="res://scene/weapon_3_color_1.tscn" id="6_4frok"]
+[ext_resource type="PackedScene" uid="uid://b18redfy68gj8" path="res://scene/weapon_2_color_1.tscn" id="6_4frok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yb72b"]
 size = Vector2(96, 50)

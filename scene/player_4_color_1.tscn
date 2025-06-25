@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bs2ulranrwinx" path="res://assets/Boat4_water_animation_color1/Boat4_water_frame2.png" id="3_xf2ge"]
 [ext_resource type="Texture2D" uid="uid://cf0csk60e1arc" path="res://assets/Boat4_water_animation_color1/Boat4_water_frame3.png" id="4_46uuf"]
 [ext_resource type="Texture2D" uid="uid://kppu84shpj0p" path="res://assets/Boat4_water_animation_color1/Boat4_water_frame4.png" id="5_61d5r"]
-[ext_resource type="PackedScene" uid="uid://b18redfy68gj8" path="res://scene/weapon_3_color_1.tscn" id="6_h1p6a"]
+[ext_resource type="PackedScene" uid="uid://ddvqomw6hpesi" path="res://scene/weapon_4_color_1.tscn" id="6_hrjv6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xf2ge"]
 size = Vector2(101, 35)
@@ -47,8 +47,6 @@ animation = &"idle"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="Weapon_3_color_1" parent="." instance=ExtResource("6_h1p6a")]
-
 [node name="PathFinder_timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
@@ -60,4 +58,7 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProJectile_Collider"]
 shape = SubResource("RectangleShape2D_hrjv6")
 
+[node name="weapon_4_color_1" parent="." instance=ExtResource("6_hrjv6")]
+
 [connection signal="timeout" from="PathFinder_timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="ProJectile_Collider" to="." method="_on_projectile_collider_area_entered"]

@@ -10,7 +10,7 @@ var mouse_position: Vector2;
 
 func _ready() -> void:
 	mouse_position = get_global_mouse_position();
-	weapon_node = $Weapon_3_color_1;
+	weapon_node = $weapon_4_color_1;
 	await create_unit(Constants.PLAYER,100,5000, Constants.PLAYER_ADVERSARY, unit_animation, pathfinder_timer);
 	navigation_agent =$NavigationAgent2D
 
