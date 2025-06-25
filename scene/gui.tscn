@@ -1,25 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://xddo8ellj385"]
+[gd_scene load_steps=16 format=3 uid="uid://xddo8ellj385"]
 
-[ext_resource type="Texture2D" uid="uid://ceqo8cterq5ql" path="res://icon.svg" id="1_6p08w"]
+[ext_resource type="PackedScene" uid="uid://tb7xsgnx7g14" path="res://scene/allie_sprite_1.tscn" id="1_pdeqv"]
+[ext_resource type="Texture2D" uid="uid://fsaeege4payp" path="res://assets/PNG/HUD/MONEY PANEL/Money Panel EMPTY HUD.png" id="1_xgtcp"]
+[ext_resource type="PackedScene" uid="uid://c7kmtjqaaqfsk" path="res://scene/allie_sprite_3.tscn" id="2_xgtcp"]
+[ext_resource type="PackedScene" uid="uid://bykkew4uaacov" path="res://scene/allie_sprtie_2.tscn" id="3_hatd8"]
+[ext_resource type="Texture2D" uid="uid://cv5bkl8sms1ij" path="res://assets/PNG/HUD/MONEY PANEL/Money Icon.png" id="4_sk816"]
+[ext_resource type="Texture2D" uid="uid://bygq6qb6pyeoa" path="res://assets/PNG/Settings/Bar BG.png" id="5_hatd8"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_sk816"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_wcjb0"]
+events = [SubResource("InputEventKey_sk816")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hatd8"]
+font_size = 20
+
+[sub_resource type="InputEventKey" id="InputEventKey_wcjb0"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_tidoa"]
+events = [SubResource("InputEventKey_wcjb0")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sk816"]
+font_size = 20
+
+[sub_resource type="InputEventKey" id="InputEventKey_tidoa"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_xo6rg"]
+events = [SubResource("InputEventKey_tidoa")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wcjb0"]
+font_size = 20
 
 [node name="GUI" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-
-[node name="player_1" type="Sprite2D" parent="."]
-position = Vector2(820, 570)
-
-[node name="player_2" type="Sprite2D" parent="."]
-position = Vector2(640, 570)
-texture = ExtResource("1_6p08w")
-
-[node name="player_3" type="Sprite2D" parent="."]
-position = Vector2(460, 570)
-texture = ExtResource("1_6p08w")
-
-[node name="player_4" type="Sprite2D" parent="."]
-position = Vector2(280, 570)
-texture = ExtResource("1_6p08w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 
 [node name="total_score" type="Label" parent="."]
 layout_mode = 0
@@ -28,6 +56,7 @@ offset_top = 73.0
 offset_right = 539.0
 offset_bottom = 96.0
 text = "Total score: 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="total_enemies" type="Label" parent="."]
 layout_mode = 0
@@ -36,3 +65,122 @@ offset_top = 64.0
 offset_right = 259.0
 offset_bottom = 87.0
 text = "Total Enemies: 0"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -103.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_bottom = 2.0
+
+[node name="BarBg" type="Sprite2D" parent="Panel/Panel"]
+position = Vector2(577.75, 50)
+scale = Vector2(41.125, 14.5714)
+texture = ExtResource("5_hatd8")
+
+[node name="MoneyPanelEmptyHud" type="Sprite2D" parent="Panel"]
+position = Vector2(97, 51)
+rotation = -3.14159
+scale = Vector2(4, 4)
+texture = ExtResource("1_xgtcp")
+
+[node name="Button" type="Button" parent="Panel/MoneyPanelEmptyHud"]
+offset_left = -23.0
+offset_top = -13.0
+offset_right = 24.0
+offset_bottom = 13.0
+shortcut = SubResource("Shortcut_wcjb0")
+
+[node name="allie_sprtie_2" parent="Panel/MoneyPanelEmptyHud" instance=ExtResource("3_hatd8")]
+position = Vector2(1.75, 1.5)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="money_1" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 78.0
+offset_right = 119.0
+offset_bottom = 106.0
+text = "50"
+label_settings = SubResource("LabelSettings_hatd8")
+
+[node name="MoneyIcon" type="Sprite2D" parent="Panel/money_1"]
+position = Vector2(-11, 15)
+texture = ExtResource("4_sk816")
+
+[node name="MoneyPanelEmptyHud2" type="Sprite2D" parent="Panel"]
+position = Vector2(299, 51)
+rotation = -3.14159
+scale = Vector2(4, 4)
+texture = ExtResource("1_xgtcp")
+
+[node name="Button2" type="Button" parent="Panel/MoneyPanelEmptyHud2"]
+offset_left = -23.75
+offset_top = -13.0
+offset_right = 23.25
+offset_bottom = 13.0
+shortcut = SubResource("Shortcut_tidoa")
+
+[node name="allie_sprite_1" parent="Panel/MoneyPanelEmptyHud2" instance=ExtResource("1_pdeqv")]
+position = Vector2(-0.5, 1.5)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="money_2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 79.0
+offset_right = 322.0
+offset_bottom = 107.0
+text = "75"
+label_settings = SubResource("LabelSettings_sk816")
+
+[node name="MoneyIcon2" type="Sprite2D" parent="Panel/money_2"]
+position = Vector2(-10, 14)
+texture = ExtResource("4_sk816")
+
+[node name="MoneyPanelEmptyHud3" type="Sprite2D" parent="Panel"]
+position = Vector2(500, 51)
+rotation = -3.14159
+scale = Vector2(4, 4)
+texture = ExtResource("1_xgtcp")
+
+[node name="Button3" type="Button" parent="Panel/MoneyPanelEmptyHud3"]
+offset_left = -23.5
+offset_top = -13.0
+offset_right = 23.5
+offset_bottom = 13.0
+shortcut = SubResource("Shortcut_xo6rg")
+
+[node name="allie_sprite_3" parent="Panel/MoneyPanelEmptyHud3" instance=ExtResource("2_xgtcp")]
+position = Vector2(2.5, 1.5)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+
+[node name="money_3" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 78.0
+offset_right = 520.0
+offset_bottom = 106.0
+text = "150"
+label_settings = SubResource("LabelSettings_wcjb0")
+
+[node name="MoneyIcon3" type="Sprite2D" parent="Panel/money_3"]
+position = Vector2(-11, 15)
+texture = ExtResource("4_sk816")

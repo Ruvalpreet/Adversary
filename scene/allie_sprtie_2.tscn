@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bykkew4uaacov"]
+
+[ext_resource type="Texture2D" uid="uid://cagynju35wpmo" path="res://assets/Boats_color1/Boat_color1_2.png" id="1_l5s6k"]
+[ext_resource type="Texture2D" uid="uid://c8nsutt3uic6s" path="res://assets/Cannon3_color1/Cannon3_color1_3.png" id="2_l5s6k"]
+
+[node name="allie_sprtie_2" type="Node2D"]
+rotation = 4.71239
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l5s6k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 41)
+texture = ExtResource("2_l5s6k")

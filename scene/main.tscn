@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://btwmu75p73us7"]
+[gd_scene load_steps=7 format=3 uid="uid://btwmu75p73us7"]
 
 [ext_resource type="Script" uid="uid://7yqsj5kl4lxm" path="res://script/main.gd" id="1_k65ib"]
 [ext_resource type="PackedScene" uid="uid://w8u8yw1fvyim" path="res://scene/map.tscn" id="1_v0l8b"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cya2sdno71l27" path="res://scene/fps_counter.tscn" id="4_brvut"]
 [ext_resource type="PackedScene" uid="uid://xddo8ellj385" path="res://scene/gui.tscn" id="5_4j5ol"]
 [ext_resource type="PackedScene" uid="uid://c5t1uvy6vu23f" path="res://scene/player_2_color_1.tscn" id="7_p1hux"]
-[ext_resource type="AudioStream" uid="uid://bhj6qpfq4id7" path="res://assets/Sounds/simple-nice-beat-361757.mp3" id="11_k65ib"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k65ib")
@@ -22,12 +21,12 @@ position = Vector2(81, 135)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("5_4j5ol")]
+offset_top = 1.0
+offset_bottom = 1.0
 
 [node name="player_2_color_2" parent="." instance=ExtResource("7_p1hux")]
 position = Vector2(656, 565)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_k65ib")
-volume_db = 5.0
+visible = false
 autoplay = true
-parameters/looping = true
