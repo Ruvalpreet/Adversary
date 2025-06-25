@@ -36,6 +36,6 @@ autoplay = true
 autostart = true
 
 [node name="main_base" parent="." instance=ExtResource("7_of57s")]
-position = Vector2(264, 358)
+position = Vector2(291, 240)
 
 [connection signal="timeout" from="gold_timer" to="." method="_on_gold_timer_timeout"]

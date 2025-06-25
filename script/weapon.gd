@@ -32,6 +32,7 @@ var shoot_sprite_node : AnimatedSprite2D;
 
 var can_shoot: bool;
 
+
 func constructor():
 	self.projectiles_left = total_number_of_projectiles - 1;
 	raycast_enemy.set_target_position(Vector2(0, projectile_range))
@@ -39,10 +40,11 @@ func constructor():
 	reload_timer_node.set_one_shot(true);
 	ray_and_shoot_timer.set_wait_time(shoot_interval_in_sec);
 	check_active_target.set_wait_time(CHECK_FOR_ACTIVE_TARGET);
+	var bullet_node: Node2D = get_tree().get_root().find_child("bullet_storage",true,false)
 	for i in total_number_of_projectiles:
 		var bullet: Area2D = projectile.instantiate();
 		projectiles_array.append(bullet)
-		get_tree().current_scene.add_child.call_deferred(bullet)
+		bullet_node.add_child.call_deferred(bullet)
 
 
 func get_active_target():

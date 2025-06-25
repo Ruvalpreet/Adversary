@@ -1,3 +1,5 @@
 [gd_scene format=3 uid="uid://dfxdbp4qe7quq"]
 
 [node name="Test" type="Node2D"]
+
+[node name="bullet_storage" type="Node2D" parent="."]

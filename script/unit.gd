@@ -69,5 +69,6 @@ func dead():
 		unit_died.emit(unit_score, Constants.ENEMY);
 	else:
 		unit_died.emit(unit_score, Constants.PLAYER);
-	Global.GET_DEAD_SHIP_SPRITE(self.global_position, transform.x.angle());
+	var death_sprite: Node2D = Global.GET_DEAD_SHIP_SPRITE(self.global_position, transform.x.angle());
+	self.add_sibling(death_sprite)
 	queue_free();

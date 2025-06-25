@@ -7,6 +7,8 @@ extends Node2D
 @onready var ally_2: PackedScene = preload("res://scene/player_3_color_1.tscn");
 @onready var ally_3: PackedScene = preload("res://scene/player_4_color_1.tscn");
 
+@onready var pause_menu: PackedScene = preload("res://scene/pause_menu.tscn");
+var pause_menu_instance: Control;
 var ally_1_gold: int = 50;
 var ally_2_gold: int = 75;
 var ally_3_gold: int = 100;
@@ -29,13 +31,17 @@ func _ready() -> void:
 	total_score_node = screen_ui.get_node("total_score");
 	total_enemy_node = screen_ui.get_node("total_enemies");
 	total_gold_node = screen_ui.get_node("gold_panel/total_gold");
+	
 	var ally_1_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud/Button");
 	ally_1_button.pressed.connect(spawn_allie_1);
 	var ally_2_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud2/Button2");
 	ally_2_button.pressed.connect(spawn_allie_2);
 	var ally_3_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud3/Button3");
 	ally_3_button.pressed.connect(spawn_allie_3);
+	pause_menu_instance = pause_menu.instantiate();
+	pause_menu_instance.visible = false;
 	total_gold_node.text = str(total_gold);
+	get_tree().current_scene.add_sibling(pause_menu_instance);
 	spawn_random_enemy();
 	spawn_random_enemy();
 
@@ -56,7 +62,7 @@ func spawn_allie_1():
 	total_gold -= ally_1_gold;
 	var allie_1_instatace = ally_1.instantiate();
 	allie_1_instatace.unit_died.connect(unit_die);
-	get_tree().current_scene.add_child(allie_1_instatace);
+	self.add_child(allie_1_instatace);
 
 func spawn_allie_2():
 	if(total_gold < ally_2_gold):
@@ -64,7 +70,7 @@ func spawn_allie_2():
 	total_gold -= ally_2_gold;
 	var allie_2_instatace = ally_2.instantiate();
 	allie_2_instatace.unit_died.connect(unit_die);
-	get_tree().current_scene.add_child(allie_2_instatace);
+	self.add_child(allie_2_instatace);
 
 func spawn_allie_3():
 	if(total_gold < ally_3_gold):
@@ -72,27 +78,27 @@ func spawn_allie_3():
 	total_gold -= ally_3_gold;
 	var allie_3_instatace = ally_3.instantiate();
 	allie_3_instatace.unit_died.connect(unit_die);
-	get_tree().current_scene.add_child(allie_3_instatace);
+	self.add_child(allie_3_instatace);
 
 func spawn_enemy_1():
 	var enemy_1_instance = enemy_1.instantiate();
 	enemy_1_instance.unit_died.connect(unit_die)
 	enemy_1_instance.global_position = Vector2(randi_range(-1850,3050), randi_range(-1450,1000))
-	get_tree().current_scene.add_child(enemy_1_instance);
+	self.add_child(enemy_1_instance);
 	total_number_of_enemies_on_map += 1;
 
 func spawn_enemy_2():
 	var enemy_2_instance = enemy_2.instantiate();
 	enemy_2_instance.unit_died.connect(unit_die)
 	enemy_2_instance.global_position = Vector2(randi_range(-1850,3050), randi_range(-1450,1000))
-	get_tree().current_scene.add_child(enemy_2_instance);
+	self.add_child(enemy_2_instance);
 	total_number_of_enemies_on_map += 1;
 
 func spawn_enemy_3():
 	var enemy_3_instance = enemy_3.instantiate();
 	enemy_3_instance.unit_died.connect(unit_die)
 	enemy_3_instance.global_position = Vector2(randi_range(-1850,3050), randi_range(-1450,1000))
-	get_tree().current_scene.add_child(enemy_3_instance);
+	self.add_child(enemy_3_instance);
 	total_number_of_enemies_on_map += 1;
 
 func spawn_random_enemy():
@@ -115,3 +121,8 @@ func _on_gold_timer_timeout() -> void:
 		return
 	total_gold += gold_added_each_sec;
 	total_gold_node.text = str(total_gold);
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		pass

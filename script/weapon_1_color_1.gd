@@ -3,7 +3,7 @@ extends Weapon
 var projectile_player: PackedScene = preload("res://scene/player_projectile_single.tscn")
 
 func _ready() -> void:
-	total_number_of_projectiles = 200;
+	total_number_of_projectiles = 20;
 	reload_timer_node = $Reload;
 	projectile = projectile_player;
 	raycast_enemy = $AnimatedSprite2D/RayCast2D;

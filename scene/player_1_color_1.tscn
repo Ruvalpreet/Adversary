@@ -90,7 +90,6 @@ scale = Vector2(5.70313, 5.09375)
 texture = SubResource("GradientTexture2D_hp4bs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.4, 1.4)
 
 [connection signal="timeout" from="PathFinding_timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="ProJectile_Collider" to="." method="_on_projectile_collider_area_entered"]

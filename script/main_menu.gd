@@ -87,6 +87,7 @@ func spawn_random_ally():
 
 
 func _on_spawner_timeout() -> void:
-	if(total_number_of_enemies_on_map <=25):
+	if(total_number_of_enemies_on_map <=2):
 		spawn_random_enemy();
+	if(total_number_of_allies_on_map <= 2):
 		spawn_random_ally();
