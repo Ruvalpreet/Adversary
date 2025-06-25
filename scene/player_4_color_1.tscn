@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://hlgf01wvnqmx"]
+
+[ext_resource type="Script" uid="uid://c6sgtetb0evqj" path="res://script/player_4_color_1.gd" id="1_hrjv6"]
+[ext_resource type="Texture2D" uid="uid://dcnbyvmn73ohy" path="res://assets/Boat4_water_animation_color1/Boat4_water_frame1.png" id="2_hrjv6"]
+[ext_resource type="Texture2D" uid="uid://bs2ulranrwinx" path="res://assets/Boat4_water_animation_color1/Boat4_water_frame2.png" id="3_xf2ge"]
+[ext_resource type="Texture2D" uid="uid://cf0csk60e1arc" path="res://assets/Boat4_water_animation_color1/Boat4_water_frame3.png" id="4_46uuf"]
+[ext_resource type="Texture2D" uid="uid://kppu84shpj0p" path="res://assets/Boat4_water_animation_color1/Boat4_water_frame4.png" id="5_61d5r"]
+[ext_resource type="PackedScene" uid="uid://b18redfy68gj8" path="res://scene/weapon_3_color_1.tscn" id="6_h1p6a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf2ge"]
+size = Vector2(101, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tvio0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hrjv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xf2ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_46uuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_61d5r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrjv6"]
+size = Vector2(115, 35)
+
+[node name="player_4_color_1" type="CharacterBody2D"]
+collision_mask = 7
+script = ExtResource("1_hrjv6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xf2ge")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 4.71239
+sprite_frames = SubResource("SpriteFrames_tvio0")
+animation = &"idle"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Weapon_3_color_1" parent="." instance=ExtResource("6_h1p6a")]
+
+[node name="PathFinder_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="ProJectile_Collider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProJectile_Collider"]
+shape = SubResource("RectangleShape2D_hrjv6")
+
+[connection signal="timeout" from="PathFinder_timer" to="." method="_on_timer_timeout"]

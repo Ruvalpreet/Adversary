@@ -5,7 +5,9 @@ extends Node2D
 
 @onready var ally_1: PackedScene = preload("res://scene/player_2_color_1.tscn");
 var ally_1_button: Button;
+@onready var ally_2: PackedScene = preload("res://scene/player_3_color_1.tscn");
 var ally_2_button: Button;
+@onready var ally_3: PackedScene = preload("res://scene/player_4_color_1.tscn");
 var ally_3_button: Button;
 
 @onready var screen_ui: Control = $CanvasLayer/GUI;
@@ -21,12 +23,12 @@ func _ready() -> void:
 	total_score_node = screen_ui.get_node("total_score");
 	total_enemy_node = screen_ui.get_node("total_enemies");
 	ally_1_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud/Button");
-	ally_1_button.pressed.connect(spawn_allies);
+	ally_1_button.pressed.connect(spawn_allie_1);
 	ally_2_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud2/Button2");
-	ally_2_button.pressed.connect(spawn_allies);
+	ally_2_button.pressed.connect(spawn_allie_2);
 	ally_3_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud3/Button3");
-	ally_3_button.pressed.connect(spawn_allies);
-	ally_1_button.disabled = true;
+	ally_3_button.pressed.connect(spawn_allie_3);
+	#ally_1_button.disabled = true
 	if(total_number_of_enemies_on_map <= 50):
 		spawn_random_enemy();
 		spawn_random_enemy();
@@ -36,6 +38,21 @@ func spawn_allies():
 	var allie_1_instatace = ally_1.instantiate();
 	allie_1_instatace.unit_died.connect(unit_die);
 	get_tree().current_scene.add_child(allie_1_instatace);
+
+func spawn_allie_1():
+	var allie_1_instatace = ally_1.instantiate();
+	allie_1_instatace.unit_died.connect(unit_die);
+	get_tree().current_scene.add_child(allie_1_instatace);
+
+func spawn_allie_2():
+	var allie_2_instatace = ally_2.instantiate();
+	allie_2_instatace.unit_died.connect(unit_die);
+	get_tree().current_scene.add_child(allie_2_instatace);
+
+func spawn_allie_3():
+	var allie_3_instatace = ally_3.instantiate();
+	allie_3_instatace.unit_died.connect(unit_die);
+	get_tree().current_scene.add_child(allie_3_instatace);
 
 func unit_die(enemy_score: int,unit_type):
 	if(unit_type == Constants.PLAYER):
