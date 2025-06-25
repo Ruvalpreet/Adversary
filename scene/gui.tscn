@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://xddo8ellj385"]
+[gd_scene load_steps=18 format=3 uid="uid://xddo8ellj385"]
 
 [ext_resource type="PackedScene" uid="uid://tb7xsgnx7g14" path="res://scene/allie_sprite_1.tscn" id="1_pdeqv"]
 [ext_resource type="Texture2D" uid="uid://fsaeege4payp" path="res://assets/PNG/HUD/MONEY PANEL/Money Panel EMPTY HUD.png" id="1_xgtcp"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bykkew4uaacov" path="res://scene/allie_sprtie_2.tscn" id="3_hatd8"]
 [ext_resource type="Texture2D" uid="uid://cv5bkl8sms1ij" path="res://assets/PNG/HUD/MONEY PANEL/Money Icon.png" id="4_sk816"]
 [ext_resource type="Texture2D" uid="uid://bygq6qb6pyeoa" path="res://assets/PNG/Settings/Bar BG.png" id="5_hatd8"]
+[ext_resource type="Texture2D" uid="uid://b4v65ojidyqln" path="res://assets/PNG/HUD/MONEY PANEL/Money Panel HUD.png" id="7_wcjb0"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_sk816"]
 device = -1
@@ -39,6 +40,9 @@ events = [SubResource("InputEventKey_tidoa")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wcjb0"]
 font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_tidoa"]
+font_size = 24
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -88,8 +92,8 @@ offset_top = 1.0
 offset_bottom = 2.0
 
 [node name="BarBg" type="Sprite2D" parent="Panel/Panel"]
-position = Vector2(577.75, 50)
-scale = Vector2(41.125, 14.5714)
+position = Vector2(1065, 50)
+scale = Vector2(75.9286, 14.5714)
 texture = ExtResource("5_hatd8")
 
 [node name="MoneyPanelEmptyHud" type="Sprite2D" parent="Panel"]
@@ -184,3 +188,22 @@ label_settings = SubResource("LabelSettings_wcjb0")
 [node name="MoneyIcon3" type="Sprite2D" parent="Panel/money_3"]
 position = Vector2(-11, 15)
 texture = ExtResource("4_sk816")
+
+[node name="gold_panel" type="Panel" parent="."]
+layout_mode = 1
+offset_right = 127.0
+offset_bottom = 55.0
+
+[node name="Sprite2D" type="Sprite2D" parent="gold_panel"]
+position = Vector2(63.75, 27.5)
+scale = Vector2(2.63542, 2.11538)
+texture = ExtResource("7_wcjb0")
+
+[node name="total_gold" type="Label" parent="gold_panel"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 15.0
+offset_right = 108.0
+offset_bottom = 49.0
+text = "0"
+label_settings = SubResource("LabelSettings_tidoa")

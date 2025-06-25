@@ -5,6 +5,7 @@ const TURN_SPEED: float = 2.5;
 
 var maxHealth: int;
 var current_health: int;
+var heath_ration: float;
 
 var movement_speed: int;
 var new_velocity: Vector2;
@@ -41,7 +42,6 @@ func movement(delta: float) -> void:
 		return
 	var next_position = navigation_agent.get_next_path_position()
 	var desired_angle = (next_position - global_position).angle()
-	#rotation = desired_angle
 	rotation = lerp_angle(rotation, desired_angle, TURN_SPEED * delta)
 	var forward_dir = transform.x;
 	velocity = forward_dir * movement_speed * delta
@@ -60,7 +60,7 @@ func damage_take(damage_collision_node: Area2D):
 	if(damage_collision_node.damage):
 		damage_collision_node.disable_projectile();
 		current_health -= damage_collision_node.damage;
-		var heath_ration: float = float(current_health) / maxHealth;
+		heath_ration = float(current_health) / maxHealth;
 		unit_live_animation.set_self_modulate(Color(heath_ration,heath_ration,heath_ration))
 		weapon_node.get_data_from_parent(heath_ration);
 		

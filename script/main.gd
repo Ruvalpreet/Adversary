@@ -4,15 +4,21 @@ extends Node2D
 @onready var enemy_3: PackedScene = preload("res://scene/enemy_4_color_3.tscn");
 
 @onready var ally_1: PackedScene = preload("res://scene/player_2_color_1.tscn");
-var ally_1_button: Button;
 @onready var ally_2: PackedScene = preload("res://scene/player_3_color_1.tscn");
-var ally_2_button: Button;
 @onready var ally_3: PackedScene = preload("res://scene/player_4_color_1.tscn");
-var ally_3_button: Button;
+
+var ally_1_gold: int = 50;
+var ally_2_gold: int = 75;
+var ally_3_gold: int = 100;
 
 @onready var screen_ui: Control = $CanvasLayer/GUI;
 var total_score_node: Label;
 var total_enemy_node: Label;
+
+var total_gold: int = 0;
+var max_gold: int = 1000;
+var total_gold_node: Label;
+var gold_added_each_sec: int = 10;
 
 var selected_character: CharacterBody2D;
 
@@ -22,37 +28,16 @@ var total_number_of_enemies_on_map: int;
 func _ready() -> void:
 	total_score_node = screen_ui.get_node("total_score");
 	total_enemy_node = screen_ui.get_node("total_enemies");
-	ally_1_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud/Button");
+	total_gold_node = screen_ui.get_node("gold_panel/total_gold");
+	var ally_1_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud/Button");
 	ally_1_button.pressed.connect(spawn_allie_1);
-	ally_2_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud2/Button2");
+	var ally_2_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud2/Button2");
 	ally_2_button.pressed.connect(spawn_allie_2);
-	ally_3_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud3/Button3");
+	var ally_3_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud3/Button3");
 	ally_3_button.pressed.connect(spawn_allie_3);
-	#ally_1_button.disabled = true
-	if(total_number_of_enemies_on_map <= 50):
-		spawn_random_enemy();
-		spawn_random_enemy();
-
-func spawn_allies():
-	print("it works")
-	var allie_1_instatace = ally_1.instantiate();
-	allie_1_instatace.unit_died.connect(unit_die);
-	get_tree().current_scene.add_child(allie_1_instatace);
-
-func spawn_allie_1():
-	var allie_1_instatace = ally_1.instantiate();
-	allie_1_instatace.unit_died.connect(unit_die);
-	get_tree().current_scene.add_child(allie_1_instatace);
-
-func spawn_allie_2():
-	var allie_2_instatace = ally_2.instantiate();
-	allie_2_instatace.unit_died.connect(unit_die);
-	get_tree().current_scene.add_child(allie_2_instatace);
-
-func spawn_allie_3():
-	var allie_3_instatace = ally_3.instantiate();
-	allie_3_instatace.unit_died.connect(unit_die);
-	get_tree().current_scene.add_child(allie_3_instatace);
+	total_gold_node.text = str(total_gold);
+	spawn_random_enemy();
+	spawn_random_enemy();
 
 func unit_die(enemy_score: int,unit_type):
 	if(unit_type == Constants.PLAYER):
@@ -63,6 +48,31 @@ func unit_die(enemy_score: int,unit_type):
 	total_enemy_node.set_text("Total Enemies: " + str(total_number_of_enemies_on_map))
 	if(total_number_of_enemies_on_map <= 50):
 		call_deferred("spawn_random_enemy")
+
+
+func spawn_allie_1():
+	if(total_gold < ally_1_gold):
+		return
+	total_gold -= ally_1_gold;
+	var allie_1_instatace = ally_1.instantiate();
+	allie_1_instatace.unit_died.connect(unit_die);
+	get_tree().current_scene.add_child(allie_1_instatace);
+
+func spawn_allie_2():
+	if(total_gold < ally_2_gold):
+		return
+	total_gold -= ally_2_gold;
+	var allie_2_instatace = ally_2.instantiate();
+	allie_2_instatace.unit_died.connect(unit_die);
+	get_tree().current_scene.add_child(allie_2_instatace);
+
+func spawn_allie_3():
+	if(total_gold < ally_3_gold):
+		return
+	total_gold -= ally_3_gold;
+	var allie_3_instatace = ally_3.instantiate();
+	allie_3_instatace.unit_died.connect(unit_die);
+	get_tree().current_scene.add_child(allie_3_instatace);
 
 func spawn_enemy_1():
 	var enemy_1_instance = enemy_1.instantiate();
@@ -96,3 +106,12 @@ func spawn_random_enemy():
 	else :
 		spawn_enemy_1();
 		
+
+
+func _on_gold_timer_timeout() -> void:
+	if(total_gold + gold_added_each_sec > max_gold):
+		total_gold = max_gold;
+		total_gold_node.text = str(total_gold);
+		return
+	total_gold += gold_added_each_sec;
+	total_gold_node.text = str(total_gold);

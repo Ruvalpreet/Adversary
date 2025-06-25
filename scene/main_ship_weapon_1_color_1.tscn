@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://kfvas6ou6syi"]
+
+[ext_resource type="Texture2D" uid="uid://bnrsngjg04fj2" path="res://assets/Cannon2_color1/Cannon2_color1_2.png" id="1_3n83b"]
+[ext_resource type="Script" uid="uid://bo7xrpel6wc6m" path="res://script/main_ship_weapon_1_color_1.gd" id="1_m82ab"]
+[ext_resource type="Texture2D" uid="uid://dve23tj02xr0y" path="res://assets/Cannon2_color1/Cannon2_color1_3.png" id="2_m82ab"]
+[ext_resource type="Texture2D" uid="uid://mvi0xhjy4i4h" path="res://assets/Cannon2_color1/Cannon2_color1_1.png" id="3_lxcrv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ilno"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycnl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3n83b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_m82ab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lxcrv")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[node name="main_ship_weapon_1_color_1" type="Node2D"]
+script = ExtResource("1_m82ab")
+
+[node name="Reload" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0ilno")
+
+[node name="RayAndShoot" type="Timer" parent="."]
+autostart = true
+
+[node name="FindBestTarget" type="RayCast2D" parent="."]
+self_modulate = Color(0.776234, 0.592811, 5.77569e-07, 1)
+rotation = 4.71239
+collision_mask = 6
+
+[node name="CheckActiveTarget" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 0)
+rotation = 4.71239
+sprite_frames = SubResource("SpriteFrames_ycnl0")
+animation = &"shoot"
+frame = 2
+frame_progress = 1.0
+
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
+modulate = Color(0.0392157, 0, 0, 1)
+position = Vector2(2.59042e-05, -14)
+collision_mask = 6
+
+[node name="BulletSpawner" type="Node2D" parent="AnimatedSprite2D"]
+position = Vector2(1, 44)
+
+[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="RayAndShoot" to="." method="_on_ray_and_shoot_timeout"]
+[connection signal="timeout" from="CheckActiveTarget" to="." method="_on_check_active_target_timeout"]

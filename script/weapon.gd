@@ -65,7 +65,7 @@ func get_active_target():
 		if ray_to_find_best_target.is_colliding() and ray_to_find_best_target.get_collider() == enemy:
 			active_target = enemy
 			return
-	active_target = enemies_in_range[0]
+	active_target = enemies_in_range[randi_range(0, enemies_in_range.size() - 1)]
 
 
 func enemy_in_sight():

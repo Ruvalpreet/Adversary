@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://djylu0jwt8vqq"]
+
+[ext_resource type="Script" uid="uid://4i2kcm1mwu8r" path="res://script/main_base.gd" id="1_jffic"]
+[ext_resource type="Texture2D" uid="uid://b0dkg12w0nci4" path="res://assets/Cannon1_color1_2-1.png.png" id="1_ryvqh"]
+[ext_resource type="PackedScene" uid="uid://kfvas6ou6syi" path="res://scene/main_ship_weapon_1_color_1.tscn" id="3_jffic"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kv6c"]
+size = Vector2(248, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jffic"]
+size = Vector2(248, 102)
+
+[node name="main_base" type="CharacterBody2D"]
+collision_mask = 7
+script = ExtResource("1_jffic")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_ryvqh")
+
+[node name="main_ship_weapon_1_color_1" parent="." instance=ExtResource("3_jffic")]
+position = Vector2(-1, 0)
+
+[node name="main_ship_weapon_1_color_2" parent="." instance=ExtResource("3_jffic")]
+position = Vector2(70, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4kv6c")
+
+[node name="ProJectile_Collider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProJectile_Collider"]
+shape = SubResource("RectangleShape2D_jffic")
+
+[connection signal="area_entered" from="ProJectile_Collider" to="." method="_on_projectile_collider_area_entered"]

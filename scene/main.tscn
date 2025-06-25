@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://btwmu75p73us7"]
+[gd_scene load_steps=8 format=3 uid="uid://btwmu75p73us7"]
 
 [ext_resource type="Script" uid="uid://7yqsj5kl4lxm" path="res://script/main.gd" id="1_k65ib"]
 [ext_resource type="PackedScene" uid="uid://w8u8yw1fvyim" path="res://scene/map.tscn" id="1_v0l8b"]
 [ext_resource type="PackedScene" uid="uid://du8thrm6tprtu" path="res://scene/player_1_color_1.tscn" id="2_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://cya2sdno71l27" path="res://scene/fps_counter.tscn" id="4_brvut"]
 [ext_resource type="PackedScene" uid="uid://xddo8ellj385" path="res://scene/gui.tscn" id="5_4j5ol"]
+[ext_resource type="PackedScene" uid="uid://djylu0jwt8vqq" path="res://scene/main_base.tscn" id="7_of57s"]
 [ext_resource type="PackedScene" uid="uid://c5t1uvy6vu23f" path="res://scene/player_2_color_1.tscn" id="7_p1hux"]
 
 [node name="Main" type="Node2D"]
@@ -30,3 +31,11 @@ position = Vector2(656, 565)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 visible = false
 autoplay = true
+
+[node name="gold_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="main_base" parent="." instance=ExtResource("7_of57s")]
+position = Vector2(264, 358)
+
+[connection signal="timeout" from="gold_timer" to="." method="_on_gold_timer_timeout"]
