@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://btwmu75p73us7"]
+[gd_scene load_steps=9 format=3 uid="uid://btwmu75p73us7"]
 
 [ext_resource type="Script" uid="uid://7yqsj5kl4lxm" path="res://script/main.gd" id="1_k65ib"]
 [ext_resource type="PackedScene" uid="uid://w8u8yw1fvyim" path="res://scene/map.tscn" id="1_v0l8b"]
 [ext_resource type="PackedScene" uid="uid://du8thrm6tprtu" path="res://scene/player_1_color_1.tscn" id="2_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://cya2sdno71l27" path="res://scene/fps_counter.tscn" id="4_brvut"]
 [ext_resource type="PackedScene" uid="uid://xddo8ellj385" path="res://scene/gui.tscn" id="5_4j5ol"]
+[ext_resource type="PackedScene" uid="uid://cdmtcovs0o7hv" path="res://scene/pause_menu.tscn" id="6_of57s"]
 [ext_resource type="PackedScene" uid="uid://djylu0jwt8vqq" path="res://scene/main_base.tscn" id="7_of57s"]
 [ext_resource type="PackedScene" uid="uid://c5t1uvy6vu23f" path="res://scene/player_2_color_1.tscn" id="7_p1hux"]
 
@@ -24,6 +25,8 @@ position = Vector2(81, 135)
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("5_4j5ol")]
 offset_top = 1.0
 offset_bottom = 1.0
+
+[node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("6_of57s")]
 
 [node name="player_2_color_2" parent="." instance=ExtResource("7_p1hux")]
 position = Vector2(656, 565)

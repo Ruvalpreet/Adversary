@@ -7,8 +7,7 @@ extends Node2D
 @onready var ally_2: PackedScene = preload("res://scene/player_3_color_1.tscn");
 @onready var ally_3: PackedScene = preload("res://scene/player_4_color_1.tscn");
 
-@onready var pause_menu: PackedScene = preload("res://scene/pause_menu.tscn");
-var pause_menu_instance: Control;
+@onready var pause_menu_instance: Control = $CanvasLayer/Pause_menu;
 var ally_1_gold: int = 50;
 var ally_2_gold: int = 75;
 var ally_3_gold: int = 100;
@@ -38,10 +37,8 @@ func _ready() -> void:
 	ally_2_button.pressed.connect(spawn_allie_2);
 	var ally_3_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud3/Button3");
 	ally_3_button.pressed.connect(spawn_allie_3);
-	pause_menu_instance = pause_menu.instantiate();
 	pause_menu_instance.visible = false;
 	total_gold_node.text = str(total_gold);
-	get_tree().current_scene.add_sibling(pause_menu_instance);
 	spawn_random_enemy();
 	spawn_random_enemy();
 
@@ -125,4 +122,6 @@ func _on_gold_timer_timeout() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		pass
+		get_tree().paused = true;
+		pause_menu_instance.visible = true;
+		

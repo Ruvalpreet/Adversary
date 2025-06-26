@@ -40,10 +40,12 @@ func GET_DEAD_SHIP_SPRITE(location: Vector2, rotation_angle: float) -> Node2D:
 	return new_dead_ship;
 	
 func main_menu():
+	main_menu_instance = main_manu.instantiate();
 	get_tree().current_scene.remove_child(main_game_instance);
 	if bullet_storage_node:
 		for child in bullet_storage_node.get_children():
 			child.queue_free()
-	main_menu_instance = main_manu.instantiate();
+	var play_button: Button = main_menu_instance.get_node("play/Button");
+	play_button.pressed.connect(play)
 	get_tree().current_scene.add_child(main_menu_instance);
 	get_tree().current_scene.move_child(main_menu_instance, 0);
