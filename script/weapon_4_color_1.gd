@@ -24,7 +24,6 @@ func _physics_process(delta: float) -> void:
 	look_at_active_target(delta);
 
 func _on_reload_timeout() -> void:
-	print("reload run")
 	is_reloading = true;
 	reload_ammo()
 

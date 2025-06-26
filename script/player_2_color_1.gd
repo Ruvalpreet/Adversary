@@ -15,7 +15,12 @@ func _ready() -> void:
 	navigation_agent =$NavigationAgent2D
 
 func _physics_process(delta: float) -> void:
+	var start_time = Time.get_ticks_usec()
+	#print("start")
 	movement(delta);
+	var end_time = Time.get_ticks_usec()
+	var time_taken = end_time - start_time
+	#print("end: ", time_taken)
 
 
 func _on_timer_timeout() -> void:

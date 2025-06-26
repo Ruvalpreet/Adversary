@@ -20,6 +20,7 @@ var navigation_agent: NavigationAgent2D;
 var unit_score: int = 0;
 var unit_type: String;
 
+var is_dead:bool = false;
 
 func create_unit(unit_type:String, maxHealth: int, movement_speed: int, adversary: Array[String], unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer) -> void:
 	if(unit_type == Constants.PLAYER):
@@ -33,7 +34,6 @@ func create_unit(unit_type:String, maxHealth: int, movement_speed: int, adversar
 	self.unit_live_animation = unit_live_animation;
 	self.path_finding_timer = path_finding_timer;
 	unit_live_animation.play(Constants.ANIMATION_IDLE)
-	print("intital data",get_groups());
 
 
 func movement(delta: float) -> void:
@@ -57,7 +57,10 @@ func destination_pathfinding(destination: Vector2) -> void:
 
 func damage_take(damage_collision_node: Area2D):
 	if(is_zero_approx(current_health) or current_health <= 0):
+		if(is_dead):
+			return
 		dead()
+		#mark_dead()
 	if(damage_collision_node.damage):
 		damage_collision_node.disable_projectile();
 		current_health -= damage_collision_node.damage;
@@ -66,6 +69,7 @@ func damage_take(damage_collision_node: Area2D):
 		weapon_node.get_data_from_parent(heath_ration);
 		
 func dead():
+	is_dead = true
 	if (unit_type == Constants.ENEMY):
 		unit_died.emit(unit_score, Constants.ENEMY);
 	else:
@@ -76,3 +80,17 @@ func dead():
 		i.queue_free();
 	self.add_sibling(death_sprite)
 	queue_free();
+
+#func mark_dead():
+	#is_dead = true;
+	#set_physics_process(false);
+	#weapon_node.disable();
+	#path_finding_timer.stop();
+	#visible = false;
+	#
+#func mark_alive():
+	#is_dead = false;
+	#set_physics_process(true);
+	#weapon_node.enable();
+	#path_finding_timer.start();
+	#visible = true;

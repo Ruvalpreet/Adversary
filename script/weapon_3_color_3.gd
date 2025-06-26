@@ -10,7 +10,7 @@ func _ready() -> void:
 	projectile_spawn_node = $AnimatedSprite2D/BulletSpawner;
 	projectile_range = 400;
 	shoot_interval_in_sec = 0.5;
-	damage = 5;
+	damage = 0;
 	reloading_speed = 2.0;
 	shoot_sprite_node = $AnimatedSprite2D;
 	ray_and_shoot_timer = $RayAndShoot;
