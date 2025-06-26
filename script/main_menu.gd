@@ -12,7 +12,16 @@ extends Node2D
 var total_number_of_enemies_on_map: int;
 var total_number_of_allies_on_map: int;
 
+
+var bullet_storage_node: Node2D;
+
+func _ready() -> void:
+	bullet_storage_node = get_tree().get_root().find_child("bullet_storage", true, false);
+
 func unit_die(enemy_score: int,unit_type: String):
+	if bullet_storage_node:
+		var count = bullet_storage_node.get_child_count()
+		print("Number of bullets:", count)
 	if(unit_type == Constants.PLAYER):
 		total_number_of_allies_on_map -= 1;
 		if(total_number_of_allies_on_map <= 20):
@@ -87,7 +96,7 @@ func spawn_random_ally():
 
 
 func _on_spawner_timeout() -> void:
-	if(total_number_of_enemies_on_map <=2):
+	if(total_number_of_enemies_on_map <=25):
 		spawn_random_enemy();
-	if(total_number_of_allies_on_map <= 2):
+	if(total_number_of_allies_on_map <= 25):
 		spawn_random_ally();

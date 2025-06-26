@@ -8,6 +8,8 @@ var game_main: PackedScene = preload("res://scene/main.tscn");
 var bullet_storage_node: Node2D;
 var main_game_instance: Node2D;
 var main_menu_instance: Node2D;
+
+
 @onready var main_runner: PackedScene = preload("res://scene/test.tscn")
 
 func _ready() -> void:
@@ -16,6 +18,7 @@ func _ready() -> void:
 	var play_button: Button = main_menu_instance.get_node("play/Button");
 	play_button.pressed.connect(play)
 	get_tree().current_scene.add_child(main_menu_instance);
+	get_tree().current_scene.move_child(main_menu_instance, 0);
 
 
 func play():
@@ -25,6 +28,7 @@ func play():
 			child.queue_free()
 	main_game_instance = game_main.instantiate();
 	get_tree().current_scene.add_child(main_game_instance);
+	get_tree().current_scene.move_child(main_game_instance, 0)
 
 
 func GET_DEAD_SHIP_SPRITE(location: Vector2, rotation_angle: float) -> Node2D:
@@ -42,3 +46,4 @@ func main_menu():
 			child.queue_free()
 	main_menu_instance = main_manu.instantiate();
 	get_tree().current_scene.add_child(main_menu_instance);
+	get_tree().current_scene.move_child(main_menu_instance, 0);

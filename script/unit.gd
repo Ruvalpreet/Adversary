@@ -20,6 +20,7 @@ var navigation_agent: NavigationAgent2D;
 var unit_score: int = 0;
 var unit_type: String;
 
+
 func create_unit(unit_type:String, maxHealth: int, movement_speed: int, adversary: Array[String], unit_live_animation: AnimatedSprite2D, path_finding_timer: Timer) -> void:
 	if(unit_type == Constants.PLAYER):
 		Global.controllable_character.append(self);
@@ -70,5 +71,8 @@ func dead():
 	else:
 		unit_died.emit(unit_score, Constants.PLAYER);
 	var death_sprite: Node2D = Global.GET_DEAD_SHIP_SPRITE(self.global_position, transform.x.angle());
+	var get_bullet_array: Array[Area2D] = weapon_node.projectiles_array;
+	for i in get_bullet_array:
+		i.queue_free();
 	self.add_sibling(death_sprite)
 	queue_free();

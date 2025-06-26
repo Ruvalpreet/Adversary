@@ -11,6 +11,9 @@ func _ready() -> void:
 
 func _on_projectile_collider_area_entered(area: Area2D) -> void:
 	if(is_zero_approx(current_health) or current_health <= 0):
+		var get_bullet_array: Array[Area2D] = weapon_node_2.projectiles_array;
+		for i in get_bullet_array:
+			i.queue_free();
 		dead()
 	if(area.damage):
 		area.disable_projectile();
