@@ -1,12 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://xddo8ellj385"]
+[gd_scene load_steps=20 format=3 uid="uid://xddo8ellj385"]
 
 [ext_resource type="PackedScene" uid="uid://tb7xsgnx7g14" path="res://scene/allie_sprite_1.tscn" id="1_pdeqv"]
+[ext_resource type="Texture2D" uid="uid://b0q038ee04dnh" path="res://assets/PNG/Mission Failed/BG.png" id="1_tidoa"]
 [ext_resource type="Texture2D" uid="uid://fsaeege4payp" path="res://assets/PNG/HUD/MONEY PANEL/Money Panel EMPTY HUD.png" id="1_xgtcp"]
 [ext_resource type="PackedScene" uid="uid://c7kmtjqaaqfsk" path="res://scene/allie_sprite_3.tscn" id="2_xgtcp"]
 [ext_resource type="PackedScene" uid="uid://bykkew4uaacov" path="res://scene/allie_sprtie_2.tscn" id="3_hatd8"]
 [ext_resource type="Texture2D" uid="uid://cv5bkl8sms1ij" path="res://assets/PNG/HUD/MONEY PANEL/Money Icon.png" id="4_sk816"]
 [ext_resource type="Texture2D" uid="uid://bygq6qb6pyeoa" path="res://assets/PNG/Settings/Bar BG.png" id="5_hatd8"]
 [ext_resource type="Texture2D" uid="uid://b4v65ojidyqln" path="res://assets/PNG/HUD/MONEY PANEL/Money Panel HUD.png" id="7_wcjb0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xo6rg"]
+font_size = 20
 
 [sub_resource type="InputEventKey" id="InputEventKey_sk816"]
 device = -1
@@ -54,20 +58,33 @@ grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="total_score" type="Label" parent="."]
-layout_mode = 0
-offset_left = 436.0
-offset_top = 73.0
-offset_right = 539.0
-offset_bottom = 96.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.0
+offset_top = 53.0
+offset_right = 14.0
+offset_bottom = 81.0
+grow_horizontal = 2
 text = "Total score: 0"
-metadata/_edit_use_anchors_ = true
+label_settings = SubResource("LabelSettings_xo6rg")
+
+[node name="Bg" type="Sprite2D" parent="total_score"]
+z_index = -1
+position = Vector2(57, 8)
+texture = ExtResource("1_tidoa")
 
 [node name="total_enemies" type="Label" parent="."]
-layout_mode = 0
-offset_left = 133.0
-offset_top = 64.0
-offset_right = 259.0
-offset_bottom = 87.0
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_right = 63.0
+offset_bottom = 23.0
+grow_horizontal = 2
 text = "Total Enemies: 0"
 
 [node name="Panel" type="Panel" parent="."]
@@ -182,7 +199,7 @@ offset_left = 480.0
 offset_top = 78.0
 offset_right = 520.0
 offset_bottom = 106.0
-text = "150"
+text = "100"
 label_settings = SubResource("LabelSettings_wcjb0")
 
 [node name="MoneyIcon3" type="Sprite2D" parent="Panel/money_3"]

@@ -28,6 +28,7 @@ var selected_character: CharacterBody2D;
 
 var total_score:int;
 var total_number_of_enemies_on_map: int;
+var total_number_of_allies_on_map: int;
 
 func _ready() -> void:
 	total_score_node = screen_ui.get_node("total_score");
@@ -50,38 +51,49 @@ func _ready() -> void:
 
 func unit_die(enemy_score: int,unit_type):
 	if(unit_type == Constants.PLAYER):
+		total_number_of_allies_on_map -= 1;
 		return
 	total_score += enemy_score
 	total_number_of_enemies_on_map -= 1;
 	total_score_node.set_text("Total score: " + str(total_score));
 	total_enemy_node.set_text("Total Enemies: " + str(total_number_of_enemies_on_map))
-	if(total_number_of_enemies_on_map <= 50):
-		call_deferred("spawn_random_enemy")
 
 
 func spawn_allie_1():
+	if total_number_of_allies_on_map >= 25:
+		return
 	if(total_gold < ally_1_gold):
 		return
 	total_gold -= ally_1_gold;
 	var allie_1_instatace = ally_1.instantiate();
 	allie_1_instatace.unit_died.connect(unit_die);
+	allie_1_instatace.global_position = Vector2(randi_range(0,1000), randi_range(0,1000))
 	self.add_child(allie_1_instatace);
+	total_number_of_allies_on_map += 1;
 
 func spawn_allie_2():
+	if total_number_of_allies_on_map >= 25:
+		return
 	if(total_gold < ally_2_gold):
 		return
 	total_gold -= ally_2_gold;
 	var allie_2_instatace = ally_2.instantiate();
 	allie_2_instatace.unit_died.connect(unit_die);
+	allie_2_instatace.global_position = Vector2(randi_range(0,1000), randi_range(0,1000))
 	self.add_child(allie_2_instatace);
+	total_number_of_allies_on_map += 1;
 
 func spawn_allie_3():
+	if total_number_of_allies_on_map >= 25:
+		return
 	if(total_gold < ally_3_gold):
 		return
 	total_gold -= ally_3_gold;
 	var allie_3_instatace = ally_3.instantiate();
 	allie_3_instatace.unit_died.connect(unit_die);
+	allie_3_instatace.global_position = Vector2(randi_range(0,1000), randi_range(0,1000))
 	self.add_child(allie_3_instatace);
+	total_number_of_allies_on_map += 1;
 
 func spawn_enemy_1():
 	var enemy_1_instance = enemy_1.instantiate();

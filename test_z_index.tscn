@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn1vkdu3hc27g"]
+
+[ext_resource type="Texture2D" uid="uid://ceqo8cterq5ql" path="res://icon.svg" id="1_wb0gq"]
+[ext_resource type="Script" uid="uid://0p8tlc2wmi8b" path="res://sprite_2d.gd" id="2_36ir1"]
+
+[node name="test_z_index" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(600, 307)
+texture = ExtResource("1_wb0gq")
+script = ExtResource("2_36ir1")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(368, 258)
+texture = ExtResource("1_wb0gq")
