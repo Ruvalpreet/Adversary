@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cpl0qpnqy8tol" path="res://assets/Boats_color1/Boat_color1_1.png" id="7_ycfc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s1h1"]
-size = Vector2(96, 41)
+size = Vector2(96, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ml7e8"]
 animations = [{
@@ -32,7 +32,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oh5ij"]
-size = Vector2(96, 41)
+size = Vector2(96, 80)
 
 [sub_resource type="Gradient" id="Gradient_oh5ij"]
 offsets = PackedFloat32Array(0, 0.671717, 1)
@@ -53,7 +53,7 @@ debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0.5)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_5s1h1")
 
 [node name="PathFinding_timer" type="Timer" parent="."]

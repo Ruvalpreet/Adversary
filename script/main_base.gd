@@ -1,5 +1,6 @@
 extends Unit
 
+signal game_ends()
 var weapon_node_2: Node2D;
 @onready var sprite:Sprite2D = $Sprite2D;
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _on_projectile_collider_area_entered(area: Area2D) -> void:
 		var get_bullet_array: Array[Area2D] = weapon_node_2.projectiles_array;
 		for i in get_bullet_array:
 			i.queue_free();
+		game_ends.emit();
 		dead()
 	if(area.damage):
 		area.disable_projectile();

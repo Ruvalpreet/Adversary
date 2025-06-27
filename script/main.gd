@@ -7,6 +7,9 @@ extends Node2D
 @onready var ally_2: PackedScene = preload("res://scene/player_3_color_1.tscn");
 @onready var ally_3: PackedScene = preload("res://scene/player_4_color_1.tscn");
 
+@onready var main_base: CharacterBody2D = $main_base
+@onready var main_player: CharacterBody2D = $Player
+@onready var end_screen: Control = $CanvasLayer/end_screen;
 @onready var pause_menu_instance: Control = $CanvasLayer/Pause_menu;
 var ally_1_gold: int = 50;
 var ally_2_gold: int = 75;
@@ -30,6 +33,9 @@ func _ready() -> void:
 	total_score_node = screen_ui.get_node("total_score");
 	total_enemy_node = screen_ui.get_node("total_enemies");
 	total_gold_node = screen_ui.get_node("gold_panel/total_gold");
+	
+	main_base.game_ends.connect(game_end)
+	main_player.game_ends.connect(game_end)
 	
 	var ally_1_button = screen_ui.get_node("Panel/MoneyPanelEmptyHud/Button");
 	ally_1_button.pressed.connect(spawn_allie_1);
@@ -125,3 +131,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().paused = true;
 		pause_menu_instance.visible = true;
 		
+
+func game_end():
+	print("this thing works")
+	end_screen.visible = true;
+	var total_score_label: Label = end_screen.get_node("Label");
+	total_score_label.text = "Score = " + str(total_score)
+
+
+func _on_unit_spawner_timeout() -> void:
+	if(total_number_of_enemies_on_map <=35):
+		spawn_random_enemy();

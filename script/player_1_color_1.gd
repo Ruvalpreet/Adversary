@@ -1,5 +1,5 @@
 extends Unit
-
+signal game_ends()
 
 @onready var unit_animation: AnimatedSprite2D = $AnimatedSprite2D;
 
@@ -12,7 +12,7 @@ var mouse_position: Vector2;
 func _ready() -> void:
 	mouse_position = get_global_mouse_position();
 	weapon_node = $Weapon_1_color_1;
-	await create_unit(Constants.PLAYER,1000,5000, Constants.PLAYER_ADVERSARY, unit_animation, pathfinder_timer);
+	await create_unit(Constants.PLAYER,100,5000, Constants.PLAYER_ADVERSARY, unit_animation, pathfinder_timer);
 	navigation_agent =$NavigationAgent2D
 
 func _physics_process(delta: float) -> void:
@@ -24,7 +24,15 @@ func _physics_process(delta: float) -> void:
 	#destination_pathfinding(mouse_position);
 
 func _on_projectile_collider_area_entered(area: Area2D) -> void:
-	damage_take(area);
+	if(is_zero_approx(current_health) or current_health <= 0):
+		game_ends.emit();
+		dead()
+	if(area.damage):
+		area.disable_projectile();
+		current_health -= area.damage;
+		heath_ration = float(current_health) / maxHealth;
+		unit_live_animation.set_self_modulate(Color(heath_ration,heath_ration,heath_ration))
+		weapon_node.get_data_from_parent(heath_ration);
 
 func player_controls(delta: float):
 	var direction: Vector2;

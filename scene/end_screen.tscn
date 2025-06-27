@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkweodolh1kkc"]
+
+[ext_resource type="Script" uid="uid://4ynknn6sy515" path="res://script/end_screen.gd" id="1_cgu5q"]
+[ext_resource type="Texture2D" uid="uid://b0q038ee04dnh" path="res://assets/PNG/Mission Failed/BG.png" id="1_yhdaf"]
+[ext_resource type="Texture2D" uid="uid://bflvyhg5ja6lk" path="res://assets/PNG/Mission Failed/BTN Retry.png" id="2_jdec7"]
+[ext_resource type="Texture2D" uid="uid://bpx41gqu0sohd" path="res://assets/PNG/Pause menu/BTN MENU.png" id="3_jdec7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yhdaf"]
+font_size = 33
+
+[node name="end_screen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cgu5q")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(-5, -1)
+scale = Vector2(1.79167, 2.78455)
+texture = ExtResource("1_yhdaf")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -73.0
+offset_top = 38.0
+offset_right = 71.0
+offset_bottom = 107.0
+
+[node name="BtnRetry" type="Sprite2D" parent="Button"]
+position = Vector2(68, 36)
+scale = Vector2(1.92857, 2.12857)
+texture = ExtResource("2_jdec7")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -101.0
+offset_top = -139.0
+offset_right = 79.0
+offset_bottom = -93.0
+text = "Score = 999"
+label_settings = SubResource("LabelSettings_yhdaf")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = -82.0
+offset_top = -61.0
+offset_right = 73.0
+offset_bottom = 11.0
+
+[node name="BtnMenu" type="Sprite2D" parent="Button2"]
+position = Vector2(78, 35)
+scale = Vector2(1.37727, 2.03929)
+texture = ExtResource("3_jdec7")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

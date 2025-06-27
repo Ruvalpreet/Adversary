@@ -23,6 +23,7 @@ func _ready() -> void:
 
 func play():
 	get_tree().current_scene.remove_child(main_menu_instance);
+	get_tree().current_scene.remove_child(main_game_instance);
 	if bullet_storage_node:
 		for child in bullet_storage_node.get_children():
 			child.queue_free()

@@ -60,7 +60,6 @@ func damage_take(damage_collision_node: Area2D):
 		if(is_dead):
 			return
 		dead()
-		#mark_dead()
 	if(damage_collision_node.damage):
 		damage_collision_node.disable_projectile();
 		current_health -= damage_collision_node.damage;
@@ -80,17 +79,3 @@ func dead():
 		i.queue_free();
 	self.add_sibling(death_sprite)
 	queue_free();
-
-#func mark_dead():
-	#is_dead = true;
-	#set_physics_process(false);
-	#weapon_node.disable();
-	#path_finding_timer.stop();
-	#visible = false;
-	#
-#func mark_alive():
-	#is_dead = false;
-	#set_physics_process(true);
-	#weapon_node.enable();
-	#path_finding_timer.start();
-	#visible = true;

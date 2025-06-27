@@ -27,43 +27,7 @@ var bullet_storage_node: Node2D;
 func _ready() -> void:
 	bullet_storage_node = get_tree().get_root().find_child("bullet_storage", true, false);
 	spawn_ally_1();
-	#for i in 25:
-		#var enemy_1_instance = enemy_1.instantiate()
-		#enemy_1_instance.unit_died.connect(unit_die)
-		#map.add_child(enemy_1_instance);
-		#enemy_1_instance.mark_dead()
-		#enemy_1_array.append(enemy_1_instance);
-		#
-		#var enemy_2_instance = enemy_2.instantiate()
-		#enemy_2_instance.unit_died.connect(unit_die)
-		#map.add_child(enemy_2_instance);
-		#enemy_2_instance.mark_dead()
-		#enemy_2_array.append(enemy_2_instance)
-		#
-		#var enemy_3_instance = enemy_3.instantiate()
-		#enemy_3_instance.unit_died.connect(unit_die)
-		#map.add_child(enemy_3_instance);
-		#enemy_3_instance.mark_dead()
-		#enemy_3_array.append(enemy_3_instance)
-		#
-		#var ally_1_instance = ally_1.instantiate()
-		#ally_1_instance.unit_died.connect(unit_die)
-		#map.add_child(ally_1_instance);
-		#ally_1_instance.mark_dead()
-		#ally_1_array.append(ally_1_instance);
-		
-		#var ally_2_instance = ally_2.instantiate()
-		#ally_2_instance.unit_died.connect(unit_die)
-		#map.add_child(ally_2_instance);
-		#ally_2_instance.mark_dead()
-		#ally_2_array.append(ally_2_instance);
-		#
-		#var ally_3_instance = ally_3.instantiate()
-		#ally_3_instance.unit_died.connect(unit_die)
-		#map.add_child(ally_3_instance);
-		#ally_3_instance.mark_dead()
-		#ally_3_array.append(ally_3_instance);
-	print("it's completed")
+
 
 func unit_die(enemy_score: int,unit_type: String):
 	if bullet_storage_node:
@@ -75,9 +39,6 @@ func unit_die(enemy_score: int,unit_type: String):
 		
 
 func spawn_enemy_1():
-	#for i in enemy_1_array:
-		#if i.is_dead:
-			#i.global_position = Vector2(randi_range(1000,2000), randi_range(-500,-200))
 	var enemy_1_instance = enemy_1.instantiate();
 	enemy_1_instance.unit_died.connect(unit_die)
 	enemy_1_instance.global_position = Vector2(randi_range(1000,2000), randi_range(-500,-200))

@@ -57,3 +57,8 @@ right={
 2d_physics/layer_3="Obstacle"
 2d_physics/layer_5="Player_Projectile"
 2d_physics/layer_6="Enemy_Projectile"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
